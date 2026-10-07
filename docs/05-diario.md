@@ -107,6 +107,16 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Histórico:** correção e áudio em um commit separado, com push solicitado para work; resultado informado ao encerrar. Pendente conferir rosto/F11, música, controles, persistência e pausa no computador.
 
+## 07/10/2026 — Conferência documental e preparação da apresentação
+
+**Confirmação humana recebida:** “A versão atual foi testada no Windows e o visual e o áudio ficaram satisfatórios.” Refere-se à implementação 23f755e enviada anteriormente. Não informa duração, hardware, FPS ou checklist individual; não presume validação desses aspectos.
+
+**Trabalho realizado com apoio de Codex:** relido o DOCX disponível; conferidos código, dependência, histórico e registros. README atualizado com instruções/controles/regras/créditos e confirmação atual; matriz histórica 03 sinalizada; novos relatórios 12 (requisitos e pendências), 13 (organização/loop/colisões/técnicas), 14 (evidências) e 15 (roteiro proposto de 13 minutos). Verificados metadados de FreeSans incluída no Pygame, sem acrescentar arquivo de fonte.
+
+**Verificações desta sessão:** conferência documental e links locais; git diff --check. Nenhuma mudança no código, nova instalação, suíte executada, audição, teste interativo ou medição de desempenho. Os 59 testes registrados são do último marco de implementação.
+
+**Pendências reais:** nomes/turma/datas e divisão efetiva; slides PPTX/PDF com capturas arquivadas; ensaio/domínio do código; pacote/cópia offline e vídeo recomendado. Não há entrega formal realizada ou etapa 4 concluída declarada. Documentação em commit separado; push solicitado para work e resultado informado ao encerrar.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

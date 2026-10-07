@@ -84,6 +84,14 @@ Validação: 48 testes na nuvem, entrada dummy por cinco quadros e inspeção de
 
 Verificações: 59 testes, Ogg e loop no mixer dummy, renderização de layouts em quatro tamanhos e inspeção de imagens da chegada/vitória em janela 960 × 540 e Full HD. Sem audição ou teste interativo Windows; adequação sonora pendente. A captura do usuário evidencia apenas o problema anterior. Detalhes no [relatório 11](11-cliente-e-audio.md). Não houve novas dependências, recursos visuais externos ou licença atribuída ao projeto inteiro.
 
+## Atualização — conferência e apresentação
+
+07/10/2026. ChatGPT/Codex apoiou releitura do DOCX, confronto com código/histórico, revisão do README e redação dos relatórios 12–15. Alterados também diário, aviso de contexto na matriz histórica 03 e este registro. Nenhum módulo ou recurso do jogo foi alterado.
+
+Fonte tipográfica identificada: `freesansbold.ttf`, fonte padrão usada por `pygame.font.Font(None, ...)`, fornecida no pacote Pygame 2.6.1. Metadados internos lidos na nuvem: família FreeSans; “Copyright 2002 Free Software Foundation.”; “The use of this font is granted subject to GNU General Public License.”; URL http://www.gnu.org/copyleft/gpl.html. Não foi copiada uma fonte adicional nem presumida uma licença da fonte igual à da biblioteca; avisos do pacote devem ser preservados ao empacotar dependências. A declaração interna não foi usada para inventar uma versão específica da GPL ou exceção não verificada.
+
+Validação humana recebida: usuário testou a versão atual no Windows e considerou visual e áudio satisfatórios. Sem ampliação para FPS, hardware ou checklist não informado. Verificação da IA nesta sessão: documentos, funções, arquivos rastreados, histórico, links e formatação do diff; sem novos testes do jogo ou instalação. As referências de jogos indicadas no enunciado continuam sem consulta declarada de conteúdo. Roteiro ainda não ensaiado; slides, vídeo e contribuições nominais pendentes.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

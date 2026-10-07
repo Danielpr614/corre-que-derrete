@@ -1,8 +1,8 @@
 # Corre que Derrete!
 
-Protótipo de jogo 2D de corrida lateral, em Python 3 e Pygame, para a disciplina de Computação Gráfica.
+Jogo 2D de corrida lateral, em Python 3 e Pygame, para a disciplina de Computação Gráfica do professor Pedro Cândido.
 
-**Etapa 3 — rosto do cliente e música, 07/10/2026.** Cliente frontal com dois olhos e sorriso centralizado; entregador de perfil preservado. Música em loop com controles e preferências locais. Renderização nativa, regras, técnicas gráficas, redimensionamento e F11 preservados. Os 59 testes na nuvem passaram; audição e validação interativa desta versão no Windows estão pendentes.
+**Preparação da entrega — 07/10/2026.** A versão `23f755e` foi testada no Windows pelo usuário, que confirmou visual e áudio satisfatórios. O enunciado anexado foi relido; os requisitos funcionais estão implementados, mas a entrega acadêmica ainda depende de slides PPTX/PDF, identificação/contribuições, evidências selecionadas, ensaio e pacote de segurança. Veja a [conferência completa dos requisitos](docs/12-conferencia-do-enunciado.md) e o [roteiro de apresentação](docs/15-roteiro-apresentacao.md). Esta revisão altera somente documentação.
 
 ## Objetivo e regras
 
@@ -53,7 +53,7 @@ As alterações são salvas em `.local/audio.json`, dentro do projeto e fora do 
 
 ## Baixar e executar no Windows com VS Code
 
-1. Use seu **Python 3.13.7 de 64 bits**, VS Code e a extensão Python da Microsoft. Se precisar instalar Python, marque a opção para adicioná-lo ao PATH. A nuvem foi verificada com Python 3.12.14. O usuário também informou que o protótipo anterior funcionou no Windows com Python 3.13.7; a revisão atual ainda precisa de confirmação nesse computador.
+1. Use seu **Python 3.13.7 de 64 bits**, VS Code e a extensão Python da Microsoft. Se precisar instalar Python, marque a opção para adicioná-lo ao PATH. A nuvem foi verificada com Python 3.12.14. O usuário também informou que o protótipo anterior funcionou no Windows com Python 3.13.7 e agora confirmou visual/áudio satisfatórios na versão atual; não informou novamente o ambiente completo. Dependência única: `pygame==2.6.1`; não é necessário instalar pacotes de fontes ou áudio separados.
 2. Abra o repositório no GitHub, selecione a branch `work` e use **Code → Download ZIP**. Extraia o ZIP. Outra opção, se tiver Git instalado, é clonar a branch `work` com o comando abaixo.
 3. No VS Code, use **Arquivo → Abrir Pasta** e selecione a pasta que contém `main.py` e `requirements.txt`.
 4. Abra **Terminal → Novo Terminal** e execute os comandos PowerShell abaixo, na raiz do projeto:
@@ -77,7 +77,14 @@ git clone --branch work https://github.com/Danielpr614/corre-que-derrete.git
 cd corre-que-derrete
 ```
 
-Se a interface publicar em outra branch, use o nome informado por ela. Baixar a branch principal antes de incorporar o protótipo pode trazer apenas o projeto inicial.
+Para atualizar uma clonagem local sem alterações pendentes:
+
+```powershell
+git switch work
+git pull --ff-only origin work
+```
+
+Quem usa ZIP deve baixar novamente a branch `work`; a branch principal pode conter uma versão diferente. Esta distribuição é código executável com Python/Pygame, não um `.exe` independente.
 
 ## Executar na nuvem/Linux e verificar
 
@@ -140,7 +147,7 @@ Colisões usam retângulos AABB e `pygame.Rect.colliderect` em coordenadas de mu
 - **Feedback:** coleta/dano têm partículas de formas diferentes, borda breve e aviso textual. Conservação baixa tem aviso, gotas e contorno pulsante na barra. A informação não depende só da cor.
 - **Chegada:** o cliente espera numa fachada sinalizada perto do fim; a vitória inclui uma ilustração de entrega com o sorvete na mão do cliente. Essa composição é visual, sem nova regra ou estado.
 
-Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não interferem na pontuação. Pausa e resultado congelam animação, efeitos e cenário; reinício restaura os temporizadores e remove as partículas. Fundos/quadros são gerados no início e regenerados na resolução atual quando o tamanho muda, sem imagens baixadas ou imagens de IA. A música acrescentada depois está creditada separadamente. Veja o [relatório técnico da etapa 3](docs/09-tecnicas-graficas.md) para explicar a implementação na apresentação.
+Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não interferem na pontuação. Pausa e resultado congelam animação, efeitos e cenário; reinício restaura os temporizadores e remove as partículas. Fundos/quadros são gerados no início e regenerados na resolução atual quando o tamanho muda, sem imagens baixadas ou imagens de IA. A música acrescentada depois está creditada separadamente. Veja o [manual de organização, loop, colisões e técnicas](docs/13-organizacao-e-tecnicas.md), com funções exatas para localizar o código. O [relatório da etapa 3](docs/09-tecnicas-graficas.md) preserva o registro daquele marco.
 
 ## Nitidez em Full HD
 
@@ -148,14 +155,14 @@ A implementação anterior desenhava tudo numa superfície de 960 × 540 e usava
 
 Agora `Window.prepare_frame()` fornece uma superfície do tamanho da área 16:9. `Renderer.resize()` ajusta o fator de desenho, rasteriza fontes maiores e regenera os caches quando a resolução muda. Em Full HD, as fontes usam tamanhos em pixels dobrados, os quadros do entregador têm 164 × 176 e as camadas têm altura de 1080. A apresentação é uma cópia direta (`blit`), sem escala da cena pronta.
 
-`drawing.py` aplica o fator apenas às coordenadas gráficas e espessuras. Nuvens e quadros são construídos a 2× a resolução de destino e reduzidos uma vez para suavizar bordas; isso usa geometria mais detalhada como fonte, sem ampliar os arquivos antigos. Os recursos ficam em cache entre mudanças de tamanho. A arte recebeu reflexos, sombras, detalhes de uniforme/mochila, volume nos objetos, fachadas e cliente. Não houve adição de arquivos externos, fontes de terceiros ou dependências.
+`drawing.py` aplica o fator apenas às coordenadas gráficas e espessuras. Nuvens e quadros são construídos a 2× a resolução de destino e reduzidos uma vez para suavizar bordas; isso usa geometria mais detalhada como fonte, sem ampliar os arquivos antigos. Os recursos ficam em cache entre mudanças de tamanho. A arte recebeu reflexos, sombras, detalhes de uniforme/mochila, volume nos objetos, fachadas e cliente. Na revisão de renderização não houve adição de recursos externos ou dependências; a música foi incluída posteriormente, com licença e créditos próprios.
 
 Leia o [relatório da renderização nativa](docs/10-renderizacao-nativa.md). Os relatórios anteriores documentam versões históricas.
 
 ## Evidências e limitações
 
-- Ambiente virtual novo com Python 3.12.14 e Pygame 2.6.1; instalação pelo `requirements.txt` concluída e `pip check` sem dependências quebradas.
-- 59 testes automatizados passaram (27 do protótipo, 7 da interface, 10 das técnicas, 4 da resolução nativa e 11 de áudio): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
+- **Registro do marco 2:** ambiente virtual novo com Python 3.12.14 e Pygame 2.6.1; instalação pelo `requirements.txt` concluída e `pip check` sem dependências quebradas.
+- **Último marco de implementação:** 59 testes automatizados passaram (27 do protótipo, 7 da interface, 10 das técnicas, 4 da resolução nativa e 11 de áudio): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
 - Uma sequência programada conclui a rota real com seis gelos e sem impactos; ficar sem comandos leva à derrota. Isso comprova possibilidade lógica, sem medir dificuldade humana.
 - Inicialização com cinco quadros dummy e compilação dos arquivos concluídas sem erro.
 - **Evidência do usuário:** o protótipo anterior foi jogado no Windows com Python 3.13.7; controles responderam e cinco capturas mostram menu, instruções, corrida, derrota e vitória. Não foi informada a versão de Pygame nem uma medição de FPS.
@@ -163,16 +170,16 @@ Leia o [relatório da renderização nativa](docs/10-renderizacao-nativa.md). Os
 - **Confirmação adicional do usuário:** a revisão de interface abriu e funcionou no computador. Não foram relatados testes individuais de redimensionamento, maximização, F11 ou de cada texto.
 - **Etapa 3 na nuvem:** verificados fatores de parallax, quadros distintos e seleção temporal, partículas limitadas/descartadas, eventos de coleta/dano, conservação baixa, pausa/reinício e chegada. Inspecionada montagem estática de quatro cenas construídas para conferir a composição; não é registro de uma partida humana.
 - **Renderização nativa na nuvem:** testes de fontes e caches Full HD, transferência de uma linha de um pixel sem interpolação, reaproveitamento dos recursos e estado de física/efeitos idêntico após renderizar/redimensionar. Inspecionadas imagens 1920 × 1080 de menu, corrida e vitória; corrigidas franjas em superfícies transparentes e inspecionada nova corrida.
-- **Pendente no Windows nesta revisão:** nitidez em Full HD e com escala de tela do sistema; fluidez, memória e possíveis pausas ao regenerar caches durante redimensionamento/F11; profundidade em movimento, quadros, partículas, cliente e regressão de controles, pausa, reinício e colisões.
+- **Confirmação atual do usuário:** “A versão atual foi testada no Windows e o visual e o áudio ficaram satisfatórios.” Refere-se à versão `23f755e`; não informa FPS, duração, hardware nem checklist individual de persistência, F11 e colisões. Não atribuir à IA esse teste.
 - **Cliente e áudio na nuvem:** inspeção da chegada e vitória em 960 × 540 e 1920 × 1080; layout de Áudio/menu/pausa em quatro tamanhos. Mixer dummy carregou a faixa e permaneceu ativo após 28 s (faixa de aproximadamente 25,17 s). Sem audição humana ou tela cheia em monitor real. Controles, persistência, falhas e pausa verificados automaticamente; veja o relatório 11.
 - Arte simples própria desenhada no código e música licenciada; sem ranking, salvamento de partida ou executável `.exe`. Preferências de áudio são salvas localmente. Python é necessário para executar esta versão.
-- **Próxima etapa:** validação no computador, correções de problemas observados, apresentação PPTX/PDF, evidências reais da evolução e pacote final. As três técnicas estão implementadas; isso não substitui a compreensão e a demonstração exigidas pelo professor.
+- **Próxima etapa:** apresentação PPTX/PDF, capturas reais arquivadas, identificação/contribuições, ensaio no computador da avaliação e pacote/cópia de segurança; vídeo curto recomendado. As três técnicas estão implementadas; isso não substitui a compreensão e a demonstração exigidas pelo professor.
 
 ## Documentação, autoria e histórico
 
 - [Concepção original](docs/01-concepcao.md)
 - [Plano original de telas e gráficos](docs/02-telas-e-graficos.md)
-- [Requisitos do professor](docs/03-requisitos.md)
+- [Matriz original de requisitos planejados](docs/03-requisitos.md)
 - [Plano de etapas](docs/04-plano-de-etapas.md)
 - [Diário](docs/05-diario.md)
 - [Fontes e apoio de IA](docs/06-fontes-e-ia.md)
@@ -182,9 +189,32 @@ Leia o [relatório da renderização nativa](docs/10-renderizacao-nativa.md). Os
 - [Renderização nativa e acabamento Full HD](docs/10-renderizacao-nativa.md)
 - [Cliente, música, controles e verificações](docs/11-cliente-e-audio.md)
 - [Créditos e licença da música](assets/audio/CREDITOS.md)
+- [Conferência atual do enunciado e pendências](docs/12-conferencia-do-enunciado.md)
+- [Organização, loop, colisões e técnicas no código](docs/13-organizacao-e-tecnicas.md)
+- [Índice de evidências e evolução](docs/14-evidencias-e-evolucao.md)
+- [Roteiro para apresentação de 10–15 minutos](docs/15-roteiro-apresentacao.md)
 
 O planejamento original foi preservado antes da implementação no commit `bf1db57`. O protótipo tem um marco separado, identificado pela mensagem `feat: registra marco 2 do prototipo jogavel`. Os documentos 01–04 preservam a proposta histórica; o estado atual está neste README; os relatórios 07–11 registram a evolução. A pontuação foi acrescentada por solicitação da etapa 2.
 
-Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb13f`) foram enviados ao GitHub na branch `work`. A etapa 3 (`9c21d5f`) também foi enviada. A renderização nativa (`26d723c`) também foi enviada. Rosto e áudio têm novo commit separado, com envio à mesma branch solicitado pelo usuário; o resultado é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
+Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb13f`) foram enviados ao GitHub na branch `work`. A etapa 3 (`9c21d5f`) também foi enviada. A renderização nativa (`26d723c`) também foi enviada. Rosto e áudio (`23f755e`) também foram enviados. Esta conferência documental tem novo commit separado, com envio autorizado para `work`; o resultado é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
 
-A ideia veio do usuário; a implementação e os testes foram redigidos com apoio de ChatGPT/Codex. O teste Windows informado pelo usuário está registrado separadamente dos testes na nuvem. Compreensão do código e verificação interativa das alterações continuam nas próximas atividades. O enunciado do professor Pedro Cândido segue como referência principal. A versão final também exigirá apresentação, créditos completos e demonstração.
+## Créditos e apoio de IA
+
+| Recurso / ferramenta | Autoria, fonte e licença | Uso no projeto |
+| --- | --- | --- |
+| Tema e decisões solicitadas | Usuário/estudante, nome ainda não informado | Ideia de entregador/sorvete, escopo, revisões e testes Windows relatados. |
+| Código e desenhos geométricos | Implementação elaborada com apoio amplo de ChatGPT/Codex | Módulos, primitivas de personagens/cenário/objetos, testes e documentação; não copiados de uma base de jogo. Nenhuma licença geral escolhida para o projeto. |
+| Python 3 | Python Software Foundation, https://www.python.org/; licença PSF: https://docs.python.org/3/license.html | Linguagem e biblioteca padrão. |
+| Pygame 2.6.1 | Comunidade Pygame, https://www.pygame.org/; LGPL informada nos metadados do pacote | Desenho, eventos, tempo, retângulos, fontes e mixer. |
+| Fonte padrão `freesansbold.ttf` / FreeSans | Free Software Foundation, copyright 2002; metadados do arquivo fornecido pelo Pygame declaram GNU GPL e indicam http://www.gnu.org/copyleft/gpl.html | `pygame.font.Font(None, ...)`; fonte do pacote, não copiada separadamente para recursos. Preservar licenças/avisos ao empacotar dependências. |
+| House In a Forest Loop | HorrorPen, copyright 2012; [fonte original](https://opengameart.org/content/loop-house-in-a-forest); [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | Ogg sem alteração de conteúdo; cópia obtida do demo Godot, autoria/licença verificadas no README específico. [Créditos completos](assets/audio/CREDITOS.md). |
+| ChatGPT/Codex | OpenAI, https://openai.com/chatgpt/ | Concepção, implementação, desenhos por código, testes, diagnóstico, documentação e Git. Finalidades, arquivos afetados e validações por marco em [fontes e IA](docs/06-fontes-e-ia.md). Não afirmar autoria humana exclusiva. |
+| Enunciado | Professor Pedro Cândido; DOCX fornecido pelo usuário | Referência acadêmica principal, relida nesta revisão. Sem licença informada. |
+
+Os três repositórios de jogos indicados pelo professor estão registrados como referências de estudo; não foi afirmada consulta de seus conteúdos nem adaptação de código deles. Não foram usados sprites/imagens externos ou gerados por IA. A música não foi gerada por IA. O estudante deve compreender o conteúdo entregue e declarar contribuições reais de cada integrante.
+
+## Problemas conhecidos e preparação da entrega
+
+Não há falha crítica relatada no teste Windows atual. Permanecem limites de escopo e evidência: alvo de 60 FPS sem medição; possível custo ao regenerar caches durante mudanças de tamanho; textos pequenos em janelas muito pequenas; colisões por retângulos aproximados, sem máscaras; sem ranking ou salvamento de partida; sem `.exe` autônomo. Áudio indisponível e escrita de preferências sem permissão são tratados com aviso. Não usar a ausência de falhas nos testes como prova de ausência de bugs.
+
+Para finalizar: preencher identificação/contribuições, montar PPTX/PDF pelo roteiro, incorporar capturas reais e comparar etapas, ensaiar na máquina da avaliação, conferir o pacote com todos os arquivos rastreados e guardar cópia offline. O vídeo curto de segurança é recomendado pelo professor e ainda não foi gravado. Não incluir `.venv/`, `work/`, caches ou preferências `.local/` no pacote. As capturas do usuário estão na conversa, sem arquivos já arquivados no Git. O [índice de evidências](docs/14-evidencias-e-evolucao.md) distingue os registros existentes dos materiais a preparar.

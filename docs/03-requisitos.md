@@ -1,5 +1,7 @@
 # Relação com o enunciado
 
+> Documento histórico da etapa 1. Para implementação e situação atual, consulte a [conferência de entrega](12-conferencia-do-enunciado.md). As tabelas abaixo preservam o planejamento original.
+
 Fonte principal: `Projeto_Avaliativo_Jogo_2D_Python_Pygame_30_Pontos.docx`, professor Pedro Cândido. As referências abaixo usam as seções do documento. O anexo foi lido como fonte de requisitos acadêmicos; a ação autorizada pelo usuário nesta etapa é somente planejar.
 
 **Nenhum requisito de execução está marcado como implementado.** A matriz apresenta cobertura planejada e a evidência que ainda será necessária.
