@@ -2,6 +2,8 @@
 
 Data: 07/10/2026. Implementação apoiada por ChatGPT/Codex, conforme solicitação do usuário. Sem validação humana de jogabilidade registrada.
 
+Este documento preserva os resultados da sessão original da etapa 2. Posteriormente, o usuário informou teste interativo no Windows; a evidência e a revisão de interface estão no [relatório 08](08-revisao-interface.md).
+
 ## Implementado
 
 Corrida automática, salto com Espaço/↑, gravidade e chão; cones e caixas alternados; colisões AABB, perda de 20 pontos percentuais e proteção de 0,8 s; seis gelos com recuperação de 15 pontos percentuais limitada a 100; derretimento de 2 pontos percentuais/s; rota finita com três trechos; vitória, derrota e prioridade de resolução no mesmo passo; menu, instruções, pausa, resultado, retorno ao menu, reinício e saída; HUD com conservação, distância, progresso, trecho, pontos, gelos e impactos.

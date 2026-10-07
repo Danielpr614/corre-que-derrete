@@ -7,6 +7,7 @@ import pygame
 from game import settings as S
 from game.graphics import Renderer
 from game.run import Run
+from game.window import Window
 
 
 class App:
@@ -102,9 +103,9 @@ def main():
     pygame.display.init()
     pygame.font.init()
     try:
-        screen = pygame.display.set_mode((S.WIDTH, S.HEIGHT))
+        window = Window()
         pygame.display.set_caption("Corre que Derrete! — Protótipo")
-        renderer = Renderer(screen)
+        renderer = Renderer(window.canvas)
         app = App()
         clock = pygame.time.Clock()
         frames = 0
@@ -113,10 +114,11 @@ def main():
             # Transições descartam o tempo anterior (inclusive após pausa).
             previous_state = app.state
             for event in pygame.event.get():
-                app.handle_event(event)
+                if not window.handle_event(event):
+                    app.handle_event(event)
             app.update(0.0 if app.state != previous_state else frame_time)
             renderer.draw(app)
-            pygame.display.flip()
+            window.present()
             frames += 1
             if args.smoke_frames is not None and frames >= args.smoke_frames:
                 break

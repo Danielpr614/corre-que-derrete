@@ -56,7 +56,7 @@ class Run:
                     self.conservation -= S.IMPACT_DAMAGE
                     self.invulnerable = S.INVULNERABILITY
                     self.hits += 1
-                    self.notice = "Impacto! -20 de conservação"
+                    self.notice = "Impacto! Perda de 20 pontos percentuais."
                     self.notice_time = 1.2
 
         for obj in self.objects:
@@ -68,7 +68,8 @@ class Run:
                 self.conservation = min(100.0, self.conservation + S.ICE_GAIN)
                 gained = max(0.0, self.conservation - previous)
                 self.ices += 1
-                self.notice = f"Gelo! +{gained:.0f} conservação / +100 pontos"
+                gain_text = f"{gained:.1f}".replace(".", ",")
+                self.notice = f"Gelo! +{gain_text} pontos percentuais | +100 pontos"
                 self.notice_time = 1.2
 
         self.conservation = max(0.0, min(100.0, self.conservation))

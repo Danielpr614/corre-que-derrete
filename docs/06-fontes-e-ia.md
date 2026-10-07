@@ -52,6 +52,14 @@ Data: 07/10/2026. Ferramenta: ChatGPT/Codex, da OpenAI; sem versão específica 
 
 **Responsabilidade humana pendente:** ler e compreender o código e as regras, experimentar o protótipo no computador, confirmar a clareza das telas e registrar ajustes reais. A implementação assistida não deve ser apresentada como escrita exclusivamente pelo estudante.
 
+## Atualização — revisão de interface
+
+Data: 07/10/2026. ChatGPT/Codex apoiou a revisão solicitada após teste humano do usuário no Windows/Python 3.13.7 e cinco capturas fornecidas na conversa. As evidências humanas referem-se ao protótipo anterior.
+
+Partes afetadas: novo `game/window.py` e `tests/test_ui.py`; alterações em `game/app.py`, `game/graphics.py`, nos textos de avisos de `game/run.py`, no README, no diário, neste registro e no novo relatório `docs/08-revisao-interface.md`. Finalidade: redimensionamento/F11, escala proporcional, legibilidade e clareza das regras.
+
+Validação: 34 testes na nuvem (incluindo sete novos), oito tamanhos de superfícies SDL dummy, entrada por cinco quadros e inspeção de três imagens geradas na nuvem. Falha inicial de restauração de tamanho identificada pelo teste e corrigida. Nenhum teste interativo Windows desta revisão foi realizado pela IA; os detalhes estão no relatório 08. Não houve novos recursos externos ou bibliotecas adicionadas.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

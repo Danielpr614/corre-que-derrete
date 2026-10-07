@@ -49,6 +49,22 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Próximo passo:** baixar/publicar a versão correta, executar no Windows, registrar observações reais e revisar dificuldades antes do marco 3 de gráficos e acabamento.
 
+## 07/10/2026 — Revisão de interface após teste no Windows
+
+**Evidência humana recebida:** usuário informou execução do protótipo anterior no Windows/Python 3.13.7, com controles responsivos. Cinco capturas na conversa mostram menu, instruções, corrida, derrota e vitória. Não inferir versão de Pygame, FPS ou teste dos novos modos de janela.
+
+**Realizado com apoio de IA:** janela redimensionável/maximizável, F11 e restauração do tamanho; superfície lógica fixa com escala 16:9 e margens; setas substituídas por palavras; objetivo/menu revisados; conservação com uma casa decimal e vírgula; explicação de pontos percentuais e pontuação; revisão de alinhamentos, espaços e fonte padrão. Nenhuma constante física ou fórmula de pontuação mudou.
+
+**Verificações:** 34 testes passaram na nuvem, incluindo sete novos testes de interface, renderização de seis telas/resultados em oito tamanhos, limites dos textos e simulação independente da resolução. Entrada executada por cinco quadros dummy. Inspecionadas três imagens geradas na nuvem (instruções, menu 4:3 e vitória em retrato). O documento 08 detalha tamanhos, comandos e limites.
+
+**Falha real e correção:** o backend dummy não restaurou 800 × 600 na primeira saída de tela cheia; aplicada reaplicação condicional do modo se o tamanho estiver incorreto. Todos os testes passaram depois da correção.
+
+**Documentação:** README atualizado, novo relatório 08 e declaração de IA ampliada. Atualizado o estado de publicação dos marcos anteriores, cujo push foi confirmado na sessão anterior.
+
+**Pendências:** redimensionamento por arraste, maximização pelo sistema, F11 e jogabilidade desta revisão no Windows; nenhum novo teste interativo Windows foi executado pela IA. Sem nova instalação de dependências ou medição de FPS nesta sessão.
+
+**Histórico:** ajuste separado com mensagem `fix: revisa interface e modos de janela`; envio à branch `work` autorizado pelo usuário, com confirmação ao fim desta sessão. Os commits de planejamento/protótipo são preservados.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

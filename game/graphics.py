@@ -4,8 +4,6 @@ Sem arquivos de recursos externos nem dependência do diretório de execução.
 Parallax, animação por quadros e partículas ficam para o próximo marco.
 """
 
-import math
-
 import pygame
 
 from game import settings as S
@@ -18,9 +16,15 @@ BLUE = (37, 89, 129)
 ORANGE = (246, 115, 51)
 
 
+def format_conservation(value):
+    """Uma casa decimal, vírgula e a mesma apresentação em todas as telas."""
+    return f"{value:.1f}".replace(".", ",") + "%"
+
+
 class Renderer:
     def __init__(self, screen):
         self.screen = screen
+        self.text_rects = []
         self.font = pygame.font.Font(None, 27)
         self.small = pygame.font.Font(None, 23)
         self.title_font = pygame.font.Font(None, 64)
@@ -34,6 +38,7 @@ class Renderer:
         else:
             rect.topleft = position
         self.screen.blit(surface, rect)
+        self.text_rects.append((message, rect.copy()))
 
     def panel(self, rect):
         pygame.draw.rect(self.screen, CREAM, rect, border_radius=18)
@@ -109,8 +114,7 @@ class Renderer:
 
     def hud(self, run):
         self.panel(pygame.Rect(18, 15, 924, 84))
-        percent = math.ceil(run.conservation)
-        self.text(f"Sorvete: {percent}%", (34, 27))
+        self.text(f"Sorvete: {format_conservation(run.conservation)}", (34, 27))
         pygame.draw.rect(self.screen, (220, 222, 222), (34, 61, 190, 17), border_radius=6)
         color = (64, 156, 121) if run.conservation > 25 else ORANGE
         if run.conservation > 0:
@@ -124,11 +128,12 @@ class Renderer:
         self.text(f"Pontos: {run.score}", (660, 27))
         self.text(f"Gelos: {run.ices}  •  Impactos: {run.hits}", (660, 62), font=self.small)
         if run.notice_time > 0:
-            self.panel(pygame.Rect(200, 110, 560, 38))
+            self.panel(pygame.Rect(155, 110, 650, 38))
             self.text(run.notice, (480, 129), center=True, font=self.small)
         elif run.conservation < 25:
             self.text("O sorvete está derretendo! Colete gelo.", (480, 127), center=True)
-        self.text("Espaço / ↑: saltar    P / Esc: pausa", (24, 508), CREAM, self.small)
+        self.text("Espaço ou seta para cima: saltar", (24, 501), CREAM, self.small)
+        self.text("P ou Esc: pausar | F11: tela cheia", (610, 501), CREAM, self.small)
 
     def options(self, app, top):
         for index, option in enumerate(app.options):
@@ -137,10 +142,11 @@ class Renderer:
             pygame.draw.rect(self.screen, BLUE if selected else (232, 226, 206),
                              rect, border_radius=10)
             self.text(option, rect.center, CREAM if selected else INK, center=True)
-        self.text("↑ / ↓: escolher     Enter: confirmar", (480, top + 166),
+        self.text("Setas para cima/baixo: selecionar | Enter: confirmar", (480, top + 166),
                   center=True, font=self.small)
 
     def draw(self, app):
+        self.text_rects.clear()
         if app.state in ("playing", "paused", "result"):
             self.world(app.run)
             self.hud(app.run)
@@ -155,40 +161,42 @@ class Renderer:
         self.panel(pygame.Rect(120, 70, 720, 410))
         if app.state == "menu":
             self.text("CORRE QUE DERRETE!", (480, 127), font=self.title_font, center=True)
-            self.text("Entregue o sorvete antes que a conservação zere.",
+            self.text("Entregue o sorvete antes que ele derreta!",
                       (480, 185), center=True)
             self.text("Protótipo • Python + Pygame", (480, 221),
                       font=self.small, center=True)
             self.options(app, 265)
-            self.text("Esc: sair", (480, 459), font=self.small, center=True)
+            self.text("Esc: sair | F11: tela cheia", (480, 459), font=self.small, center=True)
         elif app.state == "instructions":
             self.text("COMO JOGAR", (480, 117), font=self.heading, center=True)
             lines = [
-                "O entregador corre sozinho. Chegue ao cliente com sorvete!",
-                "Espaço ou ↑: saltar. Não há salto duplo.",
-                "Cones e caixas: -20% de conservação ao bater.",
-                "Gelo azul: +15%, até 100%, e +100 pontos.",
-                "O calor consome 2% por segundo de corrida.",
-                "Três trechos: a velocidade e o desafio aumentam.",
-                "P ou Esc: pausa. Pontos: metros percorridos + gelos.",
+                "A corrida é automática. Chegue ao cliente antes que o sorvete derreta!",
+                "Espaço ou seta para cima: saltar. Não há salto duplo.",
+                "Cones e caixas: perda de 20 pontos percentuais por impacto.",
+                "Gelo: recupera 15 pontos percentuais, até 100%, e vale 100 pontos.",
+                "Calor: perda de 2 pontos percentuais por segundo de corrida.",
+                "Exemplo: impacto com 80% deixa 60%; gelo com 60% deixa 75%.",
+                "Pontuação: 1 ponto por metro inteiro + 100 por gelo coletado.",
+                "Três trechos: velocidade e frequência de obstáculos aumentam.",
+                "P ou Esc: pausar/retomar. F11: alternar tela cheia.",
             ]
             for index, line in enumerate(lines):
-                self.text(line, (153, 167 + index * 34), font=self.font)
+                self.text(line, (153, 160 + index * 29), font=self.small)
             self.text("Enter / Esc: voltar ao menu", (480, 451),
                       font=self.font, center=True)
         elif app.state == "paused":
             self.text("PAUSADO", (480, 133), font=self.heading, center=True)
             self.text("A corrida e o derretimento estão congelados.", (480, 190), center=True)
             self.options(app, 242)
-            self.text("P / Esc: retomar    M: menu", (480, 449),
+            self.text("P ou Esc: retomar | M: menu | F11: tela cheia", (480, 449),
                       font=self.small, center=True)
         else:
             victory = app.run.result == "victory"
             title = "ENTREGA CONCLUÍDA!" if victory else "O SORVETE DERRETEU!"
             self.text(title, (480, 128), font=self.heading, center=True)
-            self.text(f"Distância: {app.run.distance / 10:.0f} m • Pontos: {app.run.score}",
+            self.text(f"Distância: {int(app.run.distance / S.WORLD_UNITS_PER_METER)} m | Pontos: {app.run.score}",
                       (480, 183), center=True)
-            self.text(f"Conservação restante: {app.run.conservation:.1f}%",
+            self.text(f"Sorvete: {format_conservation(app.run.conservation)}",
                       (480, 216), center=True)
             self.options(app, 265)
-            self.text("M / Esc: menu", (480, 459), font=self.small, center=True)
+            self.text("M ou Esc: menu | F11: tela cheia", (480, 459), font=self.small, center=True)
