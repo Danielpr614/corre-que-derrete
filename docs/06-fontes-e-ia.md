@@ -60,6 +60,16 @@ Partes afetadas: novo `game/window.py` e `tests/test_ui.py`; alterações em `ga
 
 Validação: 34 testes na nuvem (incluindo sete novos), oito tamanhos de superfícies SDL dummy, entrada por cinco quadros e inspeção de três imagens geradas na nuvem. Falha inicial de restauração de tamanho identificada pelo teste e corrigida. Nenhum teste interativo Windows desta revisão foi realizado pela IA; os detalhes estão no relatório 08. Não houve novos recursos externos ou bibliotecas adicionadas.
 
+## Atualização — etapa 3: técnicas e arte no código
+
+Data: 07/10/2026. ChatGPT/Codex apoiou a implementação autorizada de parallax, animação por quadros, partículas, feedback e chegada. A confirmação humana recebida dizia somente que a revisão anterior abriu e funcionou; não valida individualmente seus ajustes nem esta etapa 3.
+
+Partes afetadas: novos `game/palette.py`, `game/parallax.py`, `game/animation.py`, `game/particles.py` e `tests/test_graphics.py`; composição em `game/graphics.py`, ligação de efeitos cosméticos em `game/run.py`, README, diário, este registro e `docs/09-tecnicas-graficas.md`.
+
+Arte própria desta implementação assistida: camadas urbanas e nuvens, superfícies de quadros do entregador, cliente e formas de partículas, desenhados com primitivas. Sem sprite sheets externas, imagens geradas por IA, imagens baixadas, código de jogos de terceiros, sons ou novas bibliotecas. Fonte padrão do pacote Pygame e paleta compartilhada; créditos da tecnologia registrados acima.
+
+Validação: 44 testes na nuvem, dez novos; inicialização por cinco quadros SDL dummy; inspeção estática de quatro cenas geradas com valores preparados. Não houve partida humana desta versão, teste Windows ou medição de FPS. Módulos e explicação técnica no relatório 09. Revisão humana e compreensão do código para apresentação continuam necessárias.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

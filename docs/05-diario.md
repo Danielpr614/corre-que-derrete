@@ -65,6 +65,22 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Histórico:** ajuste separado com mensagem `fix: revisa interface e modos de janela`; envio à branch `work` autorizado pelo usuário, com confirmação ao fim desta sessão. Os commits de planejamento/protótipo são preservados.
 
+## 07/10/2026 — Etapa 3: técnicas gráficas e acabamento
+
+**Confirmação humana:** usuário informou que a revisão anterior abriu e funcionou no computador. Não relatou testes individuais de todos os ajustes de interface; não presumir validação de F11, maximização, cada texto ou de qualquer recurso desta nova etapa.
+
+**Realizado com apoio de IA:** parallax de nuvens/prédios/fachadas; seis quadros de corrida e dois de salto; partículas de gelo, impacto e conservação baixa; feedback por formas, cores e avisos; cliente visível no destino e ilustração da entrega na vitória. Novos módulos `palette`, `parallax`, `animation` e `particles`. Arte desenhada pelo Pygame no código, sem novos recursos externos ou dependências.
+
+**Preservado:** rota, constantes físicas, hitboxes, ordem de colisões/resultados, pontuação, controles, pausa/reinício, redimensionamento e F11. Efeitos são cosméticos, com limite de 100 partículas e vida finita; atualização pelo tempo de simulação.
+
+**Verificado na nuvem:** suíte anterior passou; acrescentados dez testes de técnicas/efeitos e suíte final com 44 testes passou; entrada executada por cinco quadros dummy. Inspecionada montagem de quatro cenas construídas para avaliar composição estática, não capturas de partida humana. Procedimentos e limites em `09-tecnicas-graficas.md`. Não foi observado teste falhando nesta etapa.
+
+**Não realizado:** teste desta etapa no Windows, avaliação humana da animação/parallax em movimento, medição de FPS, nova instalação de dependências, áudio, slides ou vídeo de partida. Sua confirmação de execução foi registrada apenas para a versão anterior.
+
+**Documentação/histórico:** README e créditos atualizados; relatório 09 descreve as técnicas e recursos; commit próprio `feat: registra etapa 3 de tecnicas graficas`, com push solicitado para `work`. Confirmação do envio ao fim da sessão. Marcos anteriores permanecem no histórico.
+
+**Próximo passo:** testar esta versão no computador, registrar observações reais e preparar apresentação e entrega final depois dos ajustes necessários.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

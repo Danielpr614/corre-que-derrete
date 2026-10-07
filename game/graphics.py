@@ -1,19 +1,13 @@
-"""Desenhos provisórios próprios: formas e fonte padrão do Pygame.
+"""Composição da cena e interface; técnicas visuais em módulos separados."""
 
-Sem arquivos de recursos externos nem dependência do diretório de execução.
-Parallax, animação por quadros e partículas ficam para o próximo marco.
-"""
+import math
 
 import pygame
 
 from game import settings as S
-
-
-INK = (32, 45, 66)
-CREAM = (255, 248, 230)
-SKY = (157, 217, 245)
-BLUE = (37, 89, 129)
-ORANGE = (246, 115, 51)
+from game.animation import CourierAnimation, draw_customer
+from game.parallax import Parallax
+from game.palette import BLUE, CREAM, ICE, INK, ORANGE, SKY
 
 
 def format_conservation(value):
@@ -25,6 +19,9 @@ class Renderer:
     def __init__(self, screen):
         self.screen = screen
         self.text_rects = []
+        self.background = Parallax()
+        self.courier = CourierAnimation()
+        self.effect_layer = pygame.Surface((S.WIDTH, S.HEIGHT), pygame.SRCALPHA)
         self.font = pygame.font.Font(None, 27)
         self.small = pygame.font.Font(None, 23)
         self.title_font = pygame.font.Font(None, 64)
@@ -45,22 +42,8 @@ class Renderer:
         pygame.draw.rect(self.screen, INK, rect, width=2, border_radius=18)
 
     def world(self, run):
-        self.screen.fill(SKY)
-        pygame.draw.circle(self.screen, (255, 217, 106), (825, 108), 44)
-        # Cenário simples de uma camada, repetido e rolado com a câmera.
-        offset = int(run.distance) % 240
-        for x in range(-240, S.WIDTH + 240, 240):
-            left = x - offset
-            pygame.draw.rect(self.screen, (112, 161, 175), (left, 200, 160, 230))
-            for row in range(3):
-                for column in range(3):
-                    pygame.draw.rect(self.screen, (223, 239, 224),
-                                     (left + 20 + column * 45, 225 + row * 58, 24, 28))
-        pygame.draw.rect(self.screen, (72, 81, 95), (0, S.GROUND_Y, S.WIDTH, 110))
-        pygame.draw.rect(self.screen, (241, 197, 130), (0, S.GROUND_Y, S.WIDTH, 12))
-        road_offset = int(run.distance) % 110
-        for x in range(-110, S.WIDTH + 110, 110):
-            pygame.draw.rect(self.screen, CREAM, (x - road_offset, 476, 62, 5))
+        self.background.draw(self.screen, run.distance)
+        self.destination(run)
 
         for obj in run.objects:
             if obj.kind == "ice" and obj.consumed:
@@ -86,31 +69,34 @@ class Renderer:
                 pygame.draw.line(self.screen, (255, 255, 255),
                                  (rect.x + 6, rect.y + 20), (rect.x + 20, rect.y + 6), 3)
 
-        destination = round(S.ROUTE_LENGTH + S.PLAYER_SCREEN_X - run.distance)
-        if destination < S.WIDTH:
-            pygame.draw.line(self.screen, INK, (destination, 260),
-                             (destination, S.GROUND_Y), 4)
-            pygame.draw.rect(self.screen, ORANGE, (destination, 265, 130, 38))
-            self.text("DESTINO", (destination + 8, 275), font=self.small)
-
         if run.invulnerable <= 0 or int(run.elapsed * 12) % 2 == 0:
-            rect = run.player.rect(run.distance).move(-round(run.distance), 0)
-            # Um único desenho do entregador; não é animação por quadros.
-            pygame.draw.circle(self.screen, (245, 193, 145), (rect.centerx, rect.y + 12), 12)
-            pygame.draw.rect(self.screen, BLUE, (rect.x + 3, rect.y + 23, 34, 26),
-                             border_radius=6)
-            pygame.draw.line(self.screen, INK, (rect.x + 12, rect.y + 48),
-                             (rect.x + 9, rect.bottom), 8)
-            pygame.draw.line(self.screen, INK, (rect.x + 30, rect.y + 48),
-                             (rect.x + 33, rect.bottom), 8)
-            pygame.draw.rect(self.screen, ORANGE, (rect.x - 9, rect.y + 25, 18, 25),
-                             border_radius=4)
-            pygame.draw.polygon(self.screen, (221, 158, 88),
-                                [(rect.right + 2, rect.y + 23),
-                                 (rect.right + 16, rect.y + 23),
-                                 (rect.right + 9, rect.y + 41)])
-            pygame.draw.circle(self.screen, (255, 228, 237),
-                               (rect.right + 9, rect.y + 19), 10)
+            self.courier.draw(self.screen, run.player, run.elapsed, S.PLAYER_SCREEN_X)
+        self.effect_layer.fill((0, 0, 0, 0))
+        run.effects.draw(self.effect_layer, run.distance)
+        self.screen.blit(self.effect_layer, (0, 0))
+        if run.effects.flash_time > 0:
+            color = ORANGE if run.effects.flash_kind == "impact" else ICE
+            pygame.draw.rect(self.screen, color, (5, 5, S.WIDTH - 10, S.HEIGHT - 10),
+                             width=5, border_radius=12)
+
+    def destination(self, run):
+        x = round(S.ROUTE_LENGTH + S.PLAYER_SCREEN_X - run.distance)
+        if x > S.WIDTH or x + 200 < 0:
+            return
+        pygame.draw.rect(self.screen, (236, 200, 158), (x + 25, 285, 145, 145), border_radius=6)
+        pygame.draw.rect(self.screen, BLUE, (x + 112, 333, 36, 97), border_radius=4)
+        pygame.draw.rect(self.screen, CREAM, (x + 33, 295, 125, 28), border_radius=4)
+        if 0 <= x + 33 and x + 158 <= S.WIDTH:
+            self.text("CLIENTE", (x + 95, 309), center=True, font=self.small)
+        pygame.draw.line(self.screen, ORANGE, (x, 364), (x, S.GROUND_Y), 4)
+        pygame.draw.polygon(self.screen, ORANGE, [(x, 365), (x + 25, 376), (x, 387)])
+        draw_customer(self.screen, x + 63, S.GROUND_Y, run.result == "victory")
+
+    def delivery(self):
+        # Ilustração dentro do resultado: não acrescenta estado ou regra.
+        self.screen.blit(self.courier.delivery, (145, 292))
+        draw_customer(self.screen, 245, 380, delivered=True)
+        self.text("Sorvete entregue!", (220, 397), center=True, font=self.small)
 
     def hud(self, run):
         self.panel(pygame.Rect(18, 15, 924, 84))
@@ -127,11 +113,20 @@ class Renderer:
                   (260, 62), font=self.small)
         self.text(f"Pontos: {run.score}", (660, 27))
         self.text(f"Gelos: {run.ices}  •  Impactos: {run.hits}", (660, 62), font=self.small)
+        if run.conservation < 25:
+            strength = 140 + round(80 * math.sin(run.elapsed * 4))
+            pygame.draw.rect(self.screen, (strength, 73, 43), (29, 56, 200, 27),
+                             width=3, border_radius=7)
         if run.notice_time > 0:
             self.panel(pygame.Rect(155, 110, 650, 38))
+            if run.effects.flash_time > 0:
+                color = ORANGE if run.effects.flash_kind == "impact" else ICE
+                pygame.draw.rect(self.screen, color, (155, 110, 650, 38), 3, border_radius=18)
             self.text(run.notice, (480, 129), center=True, font=self.small)
         elif run.conservation < 25:
-            self.text("O sorvete está derretendo! Colete gelo.", (480, 127), center=True)
+            self.panel(pygame.Rect(155, 110, 650, 38))
+            self.text("Conservação baixa! O sorvete está derretendo. Colete gelo.",
+                      (480, 129), center=True, font=self.small)
         self.text("Espaço ou seta para cima: saltar", (24, 501), CREAM, self.small)
         self.text("P ou Esc: pausar | F11: tela cheia", (610, 501), CREAM, self.small)
 
@@ -163,7 +158,7 @@ class Renderer:
             self.text("CORRE QUE DERRETE!", (480, 127), font=self.title_font, center=True)
             self.text("Entregue o sorvete antes que ele derreta!",
                       (480, 185), center=True)
-            self.text("Protótipo • Python + Pygame", (480, 221),
+            self.text("Corrida de sorvete • Python + Pygame", (480, 221),
                       font=self.small, center=True)
             self.options(app, 265)
             self.text("Esc: sair | F11: tela cheia", (480, 459), font=self.small, center=True)
@@ -194,6 +189,8 @@ class Renderer:
             victory = app.run.result == "victory"
             title = "ENTREGA CONCLUÍDA!" if victory else "O SORVETE DERRETEU!"
             self.text(title, (480, 128), font=self.heading, center=True)
+            if victory:
+                self.delivery()
             self.text(f"Distância: {int(app.run.distance / S.WORLD_UNITS_PER_METER)} m | Pontos: {app.run.score}",
                       (480, 183), center=True)
             self.text(f"Sorvete: {format_conservation(app.run.conservation)}",

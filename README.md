@@ -2,7 +2,7 @@
 
 Protótipo de jogo 2D de corrida lateral, em Python 3 e Pygame, para a disciplina de Computação Gráfica.
 
-**Etapa 2 — protótipo com revisão de interface, 07/10/2026.** O usuário informou teste interativo do protótipo anterior no Windows com Python 3.13.7: conseguiu jogar, os controles responderam e as capturas mostram menu, instruções, corrida, derrota e vitória. Nesta revisão, foram adicionados redimensionamento, maximização e F11, com textos corrigidos. Os 34 testes na nuvem passaram; os novos modos de janela ainda precisam de teste interativo no Windows. Não é a versão final da avaliação.
+**Etapa 3 — acabamento visual e técnicas gráficas, 07/10/2026.** Parallax, animação por quadros e partículas implementados com recursos desenhados no código. Regras, controles, janela redimensionável e F11 preservados. O usuário confirmou que a revisão anterior abriu e funcionou no Windows; isso não comprova testes individuais de todos os ajustes. As novidades desta etapa foram verificadas na nuvem (44 testes) e ainda precisam de avaliação visual/interativa no computador. Não é a entrega final da avaliação.
 
 ## Objetivo e regras
 
@@ -99,29 +99,46 @@ requirements.txt       Pygame 2.6.1
   entities.py          Personagem, objetos, hitboxes e rota fixa
   run.py               Simulação, conservação, colisões e resultado
   app.py               Estados, eventos e laço principal
-  graphics.py          Desenhos provisórios, textos, telas e HUD
+  graphics.py          Composição da cena, textos, telas e HUD
+  palette.py           Cores compartilhadas
+  parallax.py          Camadas de cenário com velocidades diferentes
+  animation.py         Quadros do entregador e desenho do cliente
+  particles.py         Cristais, faíscas, gotas e temporizadores de feedback
   window.py            Janela, F11 e escala proporcional da imagem
  tests/
   test_rules.py        Regras, estados e renderização sem tela
   test_ui.py           Layout, proporção, textos e modos com SDL dummy
- docs/                 Planejamento, diário, créditos e relatório da etapa 2
+  test_graphics.py     Técnicas, efeitos, pausa, reinício e chegada
+ docs/                 Planejamento, evolução, créditos e relatórios de testes
 ```
 
 O laço usa eventos, atualização e desenho. A simulação avança em passos de 1/60 s usando tempo acumulado; posições são números de ponto flutuante. Após um quadro muito demorado, limitar o tempo a 0,25 s evita grandes saltos: durante uma travada, o tempo da simulação pode ficar atrás do relógio real. A meta de renderização é 60 FPS, ainda sem medição no computador de demonstração.
 
 Colisões usam retângulos AABB e `pygame.Rect.colliderect` em coordenadas de mundo. Para desenhar, subtrair o deslocamento da câmera; o HUD usa coordenadas de tela. Formas, cores e desenhos são gerados no código; a fonte é a padrão distribuída com Pygame. Não há caminhos pessoais nem arquivos externos de imagens/áudio. A execução foi verificada de fora da pasta do projeto usando o caminho de `main.py`.
 
+## Técnicas gráficas e feedback
+
+- **Parallax:** nuvens a 0,15 da velocidade da câmera, prédios a 0,35 e fachadas a 0,70; chão, obstáculos e cliente usam fator 1. Os fundos se repetem com operação módulo. O HUD permanece fixo.
+- **Animação por quadros:** seis imagens de corrida a 10 quadros/s e duas de salto (subida e descida). Os quadros são superfícies transparentes desenhadas uma vez pelo Pygame. O tempo da simulação determina a pose; as hitboxes permanecem as mesmas.
+- **Partículas:** cristais cianos na coleta, faíscas alaranjadas em impactos que causam dano e gotas rosadas junto ao sorvete quando a conservação está abaixo de 25%. Cada partícula tem posição, velocidade e tempo de vida; há no máximo 100 simultâneas.
+- **Feedback:** coleta/dano têm partículas de formas diferentes, borda breve e aviso textual. Conservação baixa tem aviso, gotas e contorno pulsante na barra. A informação não depende só da cor.
+- **Chegada:** o cliente espera numa fachada sinalizada perto do fim; a vitória inclui uma ilustração de entrega com o sorvete na mão do cliente. Essa composição é visual, sem nova regra ou estado.
+
+Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não interferem na pontuação. Pausa e resultado congelam animação, efeitos e cenário; reinício restaura os temporizadores e remove as partículas. Fundos/quadros são gerados no início, sem imagens baixadas, imagens de IA ou novos arquivos de recursos. Veja o [relatório técnico da etapa 3](docs/09-tecnicas-graficas.md) para explicar a implementação na apresentação.
+
 ## Evidências e limitações
 
 - Ambiente virtual novo com Python 3.12.14 e Pygame 2.6.1; instalação pelo `requirements.txt` concluída e `pip check` sem dependências quebradas.
-- 34 testes automatizados passaram (27 do protótipo + 7 da revisão): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
+- 44 testes automatizados passaram (27 do protótipo, 7 da interface e 10 das técnicas): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
 - Uma sequência programada conclui a rota real com seis gelos e sem impactos; ficar sem comandos leva à derrota. Isso comprova possibilidade lógica, sem medir dificuldade humana.
 - Inicialização com cinco quadros dummy e compilação dos arquivos concluídas sem erro.
 - **Evidência do usuário:** o protótipo anterior foi jogado no Windows com Python 3.13.7; controles responderam e cinco capturas mostram menu, instruções, corrida, derrota e vitória. Não foi informada a versão de Pygame nem uma medição de FPS.
 - **Revisão na nuvem:** renderização em 320 × 240, 640 × 360, 960 × 540, 1280 × 720, 1366 × 768, 1920 × 1080, 800 × 600 e 600 × 900. Inspeção de imagens geradas de instruções, menu 4:3 e vitória em janela de retrato. São superfícies SDL dummy, sem janela de desktop interativa.
-- **Pendente no Windows para esta revisão:** redimensionamento real, maximização, F11 repetido, retorno ao tamanho anterior, legibilidade após escala, fluidez e FPS; confirmar controles e resultados após atualizar.
-- Arte provisória, sem áudio, ranking, salvamento ou executável `.exe`. Python é necessário para executar esta versão.
-- **Ainda pendentes para o marco 3:** parallax, animação por quadros e partículas. A rolagem atual tem uma camada e o personagem é um desenho estático; o mínimo de três técnicas do professor ainda não está concluído.
+- **Confirmação adicional do usuário:** a revisão de interface abriu e funcionou no computador. Não foram relatados testes individuais de redimensionamento, maximização, F11 ou de cada texto.
+- **Etapa 3 na nuvem:** verificados fatores de parallax, quadros distintos e seleção temporal, partículas limitadas/descartadas, eventos de coleta/dano, conservação baixa, pausa/reinício e chegada. Inspecionada montagem estática de quatro cenas construídas para conferir a composição; não é registro de uma partida humana.
+- **Pendente no Windows nesta etapa:** profundidade em movimento, fluidez dos quadros de corrida/salto, reconhecimento de coleta/dano/derretimento, leitura da chegada, FPS com partículas e regressão interativa de pausa, reinício, redimensionamento e F11.
+- Arte simples própria desenhada no código, sem áudio, ranking, salvamento ou executável `.exe`. Python é necessário para executar esta versão.
+- **Próxima etapa:** validação no computador, correções de problemas observados, apresentação PPTX/PDF, evidências reais da evolução e pacote final. As três técnicas estão implementadas; isso não substitui a compreensão e a demonstração exigidas pelo professor.
 
 ## Documentação, autoria e histórico
 
@@ -133,9 +150,10 @@ Colisões usam retângulos AABB e `pygame.Rect.colliderect` em coordenadas de mu
 - [Fontes e apoio de IA](docs/06-fontes-e-ia.md)
 - [Implementação e verificações da etapa 2](docs/07-prototipo-e-testes.md)
 - [Revisão de interface e evidências Windows/nuvem](docs/08-revisao-interface.md)
+- [Etapa 3: técnicas gráficas e testes](docs/09-tecnicas-graficas.md)
 
 O planejamento original foi preservado antes da implementação no commit `bf1db57`. O protótipo tem um marco separado, identificado pela mensagem `feat: registra marco 2 do prototipo jogavel`. Os documentos 01–04 preservam a proposta histórica; o estado efetivo está neste README e no documento 07. A pontuação foi acrescentada por solicitação da etapa 2.
 
-Os marcos de planejamento (`bf1db57`) e protótipo (`2ef4366`) foram enviados ao GitHub na branch `work`. A revisão de interface tem commit separado (`fix: revisa interface e modos de janela`) e envio à mesma branch solicitado pelo usuário. O resultado do envio é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
+Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb13f`) foram enviados ao GitHub na branch `work`. A etapa 3 tem commit separado (`feat: registra etapa 3 de tecnicas graficas`), com envio à mesma branch autorizado pelo usuário; o resultado é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
 
 A ideia veio do usuário; a implementação e os testes foram redigidos com apoio de ChatGPT/Codex. O teste Windows informado pelo usuário está registrado separadamente dos testes na nuvem. Compreensão do código e verificação interativa das alterações continuam nas próximas atividades. O enunciado do professor Pedro Cândido segue como referência principal. A versão final também exigirá apresentação, créditos completos e demonstração.

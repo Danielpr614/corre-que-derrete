@@ -2,6 +2,7 @@
 
 from game import settings as S
 from game.entities import Player, build_route
+from game.particles import Effects
 
 
 class Run:
@@ -17,6 +18,7 @@ class Run:
         self.result = None
         self.notice = "Vamos entregar esse sorvete!"
         self.notice_time = 2.0
+        self.effects = Effects()
 
     @property
     def stage(self):
@@ -42,6 +44,8 @@ class Run:
         self.notice_time = max(0.0, self.notice_time - dt)
         self.distance = min(S.ROUTE_LENGTH, self.distance + self.speed * dt)
         self.player.update(dt)
+        self.effects.update(dt, self.conservation < 25,
+                            self.distance + S.PLAYER_SCREEN_X + 55, self.player.y + 22)
         self.conservation -= S.MELT_RATE * dt
         player_rect = self.player.rect(self.distance)
 
@@ -58,6 +62,7 @@ class Run:
                     self.hits += 1
                     self.notice = "Impacto! Perda de 20 pontos percentuais."
                     self.notice_time = 1.2
+                    self.effects.burst("impact", player_rect.centerx, player_rect.centery)
 
         for obj in self.objects:
             if obj.kind != "ice" or obj.consumed:
@@ -71,6 +76,7 @@ class Run:
                 gain_text = f"{gained:.1f}".replace(".", ",")
                 self.notice = f"Gelo! +{gain_text} pontos percentuais | +100 pontos"
                 self.notice_time = 1.2
+                self.effects.burst("ice", obj.rect.centerx, obj.rect.centery)
 
         self.conservation = max(0.0, min(100.0, self.conservation))
         if self.conservation <= 0:
