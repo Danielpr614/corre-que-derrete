@@ -1,4 +1,4 @@
-"""Janela física separada da superfície lógica de 960 × 540 do jogo."""
+"""Janela e superfície nativa; 960 × 540 é só a referência de coordenadas."""
 
 import pygame
 
@@ -20,8 +20,8 @@ class Window:
         self.windowed_size = (S.WIDTH, S.HEIGHT)
         self.fullscreen = False
         self.screen = pygame.display.set_mode(self.windowed_size, pygame.RESIZABLE)
-        self.canvas = pygame.Surface((S.WIDTH, S.HEIGHT)).convert()
-        self.scaled = None
+        self.canvas = None
+        self.prepare_frame()
 
     def toggle_fullscreen(self):
         if not self.fullscreen:
@@ -35,7 +35,7 @@ class Window:
                 screen = pygame.display.set_mode(self.windowed_size, pygame.RESIZABLE)
         self.screen = screen
         self.fullscreen = not self.fullscreen
-        self.scaled = None
+        self.prepare_frame()
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
@@ -51,12 +51,17 @@ class Window:
             return True
         return False
 
+    def prepare_frame(self):
+        viewport = viewport_rect(self.screen.get_size())
+        size = viewport.size if viewport.width and viewport.height else (16, 9)
+        if self.canvas is None or self.canvas.get_size() != size:
+            self.canvas = pygame.Surface(size).convert()
+        return self.canvas
+
     def present(self):
         self.screen.fill((18, 25, 36))
         viewport = viewport_rect(self.screen.get_size())
         if viewport.width and viewport.height:
-            if self.scaled is None or self.scaled.get_size() != viewport.size:
-                self.scaled = pygame.Surface(viewport.size).convert()
-            pygame.transform.smoothscale(self.canvas, viewport.size, self.scaled)
-            self.screen.blit(self.scaled, viewport)
+            # Imagem já rasterizada no tamanho final: cópia sem ampliação.
+            self.screen.blit(self.canvas, viewport)
         pygame.display.flip()

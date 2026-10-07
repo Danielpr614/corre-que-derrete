@@ -117,6 +117,7 @@ def main():
                 if not window.handle_event(event):
                     app.handle_event(event)
             app.update(0.0 if app.state != previous_state else frame_time)
+            renderer.resize(window.prepare_frame())
             renderer.draw(app)
             window.present()
             frames += 1

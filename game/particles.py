@@ -5,6 +5,7 @@ import random
 
 import pygame
 
+from game.drawing import Draw
 from game.palette import ICE, ORANGE, PINK
 
 
@@ -65,15 +66,16 @@ class Effects:
         else:
             self.melt_timer = 0.0
 
-    def draw(self, layer, camera):
+    def draw(self, layer, camera, scale=1.0):
+        d = Draw(layer, scale)
         for particle in self.particles:
             x, y = round(particle.x - camera), round(particle.y)
             alpha = round(255 * particle.remaining / particle.lifetime)
             if particle.kind == "ice":
-                pygame.draw.polygon(layer, (*ICE, alpha),
+                d.polygon((*ICE, alpha),
                                     [(x, y - 4), (x + 4, y), (x, y + 4), (x - 4, y)])
             elif particle.kind == "impact":
-                pygame.draw.line(layer, (*ORANGE, alpha), (x - 3, y - 3), (x + 3, y + 3), 3)
-                pygame.draw.line(layer, (*ORANGE, alpha), (x - 3, y + 3), (x + 3, y - 3), 3)
+                d.line((*ORANGE, alpha), (x - 3, y - 3), (x + 3, y + 3), 3)
+                d.line((*ORANGE, alpha), (x - 3, y + 3), (x + 3, y - 3), 3)
             else:
-                pygame.draw.ellipse(layer, (*PINK, alpha), (x - 2, y - 3, 5, 8))
+                d.ellipse((*PINK, alpha), (x - 2, y - 3, 5, 8))

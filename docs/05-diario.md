@@ -81,6 +81,20 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Próximo passo:** testar esta versão no computador, registrar observações reais e preparar apresentação e entrega final depois dos ajustes necessários.
 
+## 07/10/2026 — Renderização nativa e arte em Full HD
+
+**Relato recebido:** usuário percebeu imagem e textos esticados em janela ampliada/tela cheia e solicitou investigação e melhoria. Não é confirmação de testes da correção atual.
+
+**Causa observada:** cena e fontes rasterizadas em 960 × 540 e ampliadas por `smoothscale`; quadros/fundos também tinham resolução fixa baixa. Corrigida a arquitetura para desenhar na resolução da área 16:9, com fontes nativas, recursos regenerados e cópia final sem escala. Novo módulo `drawing.py` converte apenas coordenadas gráficas.
+
+**Acabamento:** detalhes adicionais no personagem, cliente, fachadas, cone, caixa e gelo; gradiente e sombras de painel. Recursos próprios no código com apoio de IA; nenhuma nova dependência ou imagem externa.
+
+**Verificações reais:** 48 testes passaram ao final, incluindo quatro novos testes de resolução, apresentação sem interpolação, caches e independência da física. Testes anteriores de janela atualizados porque pressupunham a arquitetura removida. Comando de entrada por cinco quadros dummy. Inspeção de três cenas Full HD e nova corrida após corrigir franjas transparentes detectadas nas imagens; suíte repetida após essa correção. Detalhes em `10-renderizacao-nativa.md`.
+
+**Preservado/pendente:** nenhuma mudança nas regras, constantes físicas, rota ou controles. Parallax, animação, partículas, pausa/reinício, proporção, redimensionamento e F11 continuam. Teste interativo Windows, DPI, fluidez, FPS e memória pendentes. Sem nova instalação nesta sessão.
+
+**Registro:** README, diário e créditos atualizados; relatório 10 criado. Commit separado `fix: renderiza em resolucao nativa e refina arte`, com push autorizado para `work`; resultado confirmado ao fim da sessão.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

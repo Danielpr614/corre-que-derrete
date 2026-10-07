@@ -70,6 +70,14 @@ Arte própria desta implementação assistida: camadas urbanas e nuvens, superf�
 
 Validação: 44 testes na nuvem, dez novos; inicialização por cinco quadros SDL dummy; inspeção estática de quatro cenas geradas com valores preparados. Não houve partida humana desta versão, teste Windows ou medição de FPS. Módulos e explicação técnica no relatório 09. Revisão humana e compreensão do código para apresentação continuam necessárias.
 
+## Atualização — renderização nativa Full HD
+
+Data: 07/10/2026. ChatGPT/Codex apoiou diagnóstico da ampliação da superfície fixa, alteração da rasterização, detalhes gráficos, testes e documentação. Partes afetadas: `game/window.py`, `app.py`, `graphics.py`, `animation.py`, `parallax.py`, `particles.py`; novo `drawing.py`; `tests/test_ui.py` e novo `tests/test_resolution.py`; README, diário, este registro e novo relatório 10.
+
+Origem dos detalhes de personagem, cenário, obstáculos, gelo e cliente: desenhos geométricos próprios da implementação assistida, definidos no código. Nenhum recurso externo acrescentado. Fonte padrão e `pygame.gfxdraw` pertencem à biblioteca Pygame já creditada; nenhuma dependência nova.
+
+Validação: 48 testes na nuvem, entrada dummy por cinco quadros e inspeção de imagens 1920 × 1080 com valores preparados. Ajustados testes que exigiam a antiga superfície fixa; corrigidas franjas de antialiasing em superfícies transparentes e repetida a suíte. Sem teste Windows da revisão, medição de FPS/DPI/memória ou partida humana. O relatório 10 descreve arquitetura, evidências e pendências.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

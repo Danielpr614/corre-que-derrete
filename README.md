@@ -2,7 +2,7 @@
 
 Protótipo de jogo 2D de corrida lateral, em Python 3 e Pygame, para a disciplina de Computação Gráfica.
 
-**Etapa 3 — acabamento visual e técnicas gráficas, 07/10/2026.** Parallax, animação por quadros e partículas implementados com recursos desenhados no código. Regras, controles, janela redimensionável e F11 preservados. O usuário confirmou que a revisão anterior abriu e funcionou no Windows; isso não comprova testes individuais de todos os ajustes. As novidades desta etapa foram verificadas na nuvem (44 testes) e ainda precisam de avaliação visual/interativa no computador. Não é a entrega final da avaliação.
+**Etapa 3 — acabamento com renderização nativa, 07/10/2026.** A cena deixa de ser uma imagem de 960 × 540 ampliada: fontes, interface, desenhos e caches são rasterizados para a resolução da área visível (1920 × 1080 em Full HD). As coordenadas de referência e a física continuam iguais. Parallax, quadros, partículas, redimensionamento e F11 preservados. Foram executados 48 testes na nuvem; nitidez percebida, fluidez e integração interativa precisam de validação desta versão no Windows.
 
 ## Objetivo e regras
 
@@ -38,7 +38,7 @@ A duração ideal é aproximadamente 61 segundos de simulação. As posições d
 | Qualquer tela | Arrastar bordas / maximizar | Ajustar o tamanho mantendo a proporção |
 | Qualquer tela | Fechar a janela | Encerrar |
 
-A área lógica continua em 960 × 540 (16:9); a janela pode ser redimensionada ou maximizada. A imagem inteira é escalada sem distorções ou recortes, com margens escuras quando necessário. F11 volta ao tamanho de janela anterior. Em janelas pequenas, o texto também fica pequeno: prefira 960 × 540 ou mais para leitura. Tamanho de janela não altera velocidade, gravidade ou hitboxes.
+A referência de coordenadas continua em 960 × 540 (16:9), mas a superfície de desenho tem o tamanho nativo da área visível. Fontes e primitivas são rasterizadas nesse tamanho; não há ampliação da cena pronta. A janela pode ser redimensionada ou maximizada, com margens escuras quando necessário. F11 volta ao tamanho de janela anterior. Em janelas pequenas, o texto também fica pequeno: prefira 960 × 540 ou mais para leitura. Tamanho de janela não altera velocidade, gravidade ou hitboxes.
 
 ## Baixar e executar no Windows com VS Code
 
@@ -104,11 +104,13 @@ requirements.txt       Pygame 2.6.1
   parallax.py          Camadas de cenário com velocidades diferentes
   animation.py         Quadros do entregador e desenho do cliente
   particles.py         Cristais, faíscas, gotas e temporizadores de feedback
-  window.py            Janela, F11 e escala proporcional da imagem
+  window.py            Janela, F11 e superfície nativa 16:9
+  drawing.py           Coordenadas lógicas convertidas em primitivas nativas
  tests/
   test_rules.py        Regras, estados e renderização sem tela
   test_ui.py           Layout, proporção, textos e modos com SDL dummy
   test_graphics.py     Técnicas, efeitos, pausa, reinício e chegada
+  test_resolution.py   Fontes/recursos Full HD, cópia nativa e independência da física
  docs/                 Planejamento, evolução, créditos e relatórios de testes
 ```
 
@@ -124,19 +126,30 @@ Colisões usam retângulos AABB e `pygame.Rect.colliderect` em coordenadas de mu
 - **Feedback:** coleta/dano têm partículas de formas diferentes, borda breve e aviso textual. Conservação baixa tem aviso, gotas e contorno pulsante na barra. A informação não depende só da cor.
 - **Chegada:** o cliente espera numa fachada sinalizada perto do fim; a vitória inclui uma ilustração de entrega com o sorvete na mão do cliente. Essa composição é visual, sem nova regra ou estado.
 
-Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não interferem na pontuação. Pausa e resultado congelam animação, efeitos e cenário; reinício restaura os temporizadores e remove as partículas. Fundos/quadros são gerados no início, sem imagens baixadas, imagens de IA ou novos arquivos de recursos. Veja o [relatório técnico da etapa 3](docs/09-tecnicas-graficas.md) para explicar a implementação na apresentação.
+Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não interferem na pontuação. Pausa e resultado congelam animação, efeitos e cenário; reinício restaura os temporizadores e remove as partículas. Fundos/quadros são gerados no início e regenerados na resolução atual quando o tamanho muda, sem imagens baixadas, imagens de IA ou novos arquivos de recursos. Veja o [relatório técnico da etapa 3](docs/09-tecnicas-graficas.md) para explicar a implementação na apresentação.
+
+## Nitidez em Full HD
+
+A implementação anterior desenhava tudo numa superfície de 960 × 540 e usava `smoothscale` para ampliá-la; fontes pequenas e sprites de 82 × 88 também eram ampliados. Isso preservava a proporção, mas limitava os detalhes disponíveis.
+
+Agora `Window.prepare_frame()` fornece uma superfície do tamanho da área 16:9. `Renderer.resize()` ajusta o fator de desenho, rasteriza fontes maiores e regenera os caches quando a resolução muda. Em Full HD, as fontes usam tamanhos em pixels dobrados, os quadros do entregador têm 164 × 176 e as camadas têm altura de 1080. A apresentação é uma cópia direta (`blit`), sem escala da cena pronta.
+
+`drawing.py` aplica o fator apenas às coordenadas gráficas e espessuras. Nuvens e quadros são construídos a 2× a resolução de destino e reduzidos uma vez para suavizar bordas; isso usa geometria mais detalhada como fonte, sem ampliar os arquivos antigos. Os recursos ficam em cache entre mudanças de tamanho. A arte recebeu reflexos, sombras, detalhes de uniforme/mochila, volume nos objetos, fachadas e cliente. Não houve adição de arquivos externos, fontes de terceiros ou dependências.
+
+Leia o [relatório da renderização nativa](docs/10-renderizacao-nativa.md). Os relatórios anteriores documentam versões históricas.
 
 ## Evidências e limitações
 
 - Ambiente virtual novo com Python 3.12.14 e Pygame 2.6.1; instalação pelo `requirements.txt` concluída e `pip check` sem dependências quebradas.
-- 44 testes automatizados passaram (27 do protótipo, 7 da interface e 10 das técnicas): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
+- 48 testes automatizados passaram (27 do protótipo, 7 da interface, 10 das técnicas e 4 da resolução nativa): movimento, salto, colisões, conservação, progressão, estados, pausa, resultado, reinício, encerramento e chamadas de desenho com SDL dummy.
 - Uma sequência programada conclui a rota real com seis gelos e sem impactos; ficar sem comandos leva à derrota. Isso comprova possibilidade lógica, sem medir dificuldade humana.
 - Inicialização com cinco quadros dummy e compilação dos arquivos concluídas sem erro.
 - **Evidência do usuário:** o protótipo anterior foi jogado no Windows com Python 3.13.7; controles responderam e cinco capturas mostram menu, instruções, corrida, derrota e vitória. Não foi informada a versão de Pygame nem uma medição de FPS.
 - **Revisão na nuvem:** renderização em 320 × 240, 640 × 360, 960 × 540, 1280 × 720, 1366 × 768, 1920 × 1080, 800 × 600 e 600 × 900. Inspeção de imagens geradas de instruções, menu 4:3 e vitória em janela de retrato. São superfícies SDL dummy, sem janela de desktop interativa.
 - **Confirmação adicional do usuário:** a revisão de interface abriu e funcionou no computador. Não foram relatados testes individuais de redimensionamento, maximização, F11 ou de cada texto.
 - **Etapa 3 na nuvem:** verificados fatores de parallax, quadros distintos e seleção temporal, partículas limitadas/descartadas, eventos de coleta/dano, conservação baixa, pausa/reinício e chegada. Inspecionada montagem estática de quatro cenas construídas para conferir a composição; não é registro de uma partida humana.
-- **Pendente no Windows nesta etapa:** profundidade em movimento, fluidez dos quadros de corrida/salto, reconhecimento de coleta/dano/derretimento, leitura da chegada, FPS com partículas e regressão interativa de pausa, reinício, redimensionamento e F11.
+- **Renderização nativa na nuvem:** testes de fontes e caches Full HD, transferência de uma linha de um pixel sem interpolação, reaproveitamento dos recursos e estado de física/efeitos idêntico após renderizar/redimensionar. Inspecionadas imagens 1920 × 1080 de menu, corrida e vitória; corrigidas franjas em superfícies transparentes e inspecionada nova corrida.
+- **Pendente no Windows nesta revisão:** nitidez em Full HD e com escala de tela do sistema; fluidez, memória e possíveis pausas ao regenerar caches durante redimensionamento/F11; profundidade em movimento, quadros, partículas, cliente e regressão de controles, pausa, reinício e colisões.
 - Arte simples própria desenhada no código, sem áudio, ranking, salvamento ou executável `.exe`. Python é necessário para executar esta versão.
 - **Próxima etapa:** validação no computador, correções de problemas observados, apresentação PPTX/PDF, evidências reais da evolução e pacote final. As três técnicas estão implementadas; isso não substitui a compreensão e a demonstração exigidas pelo professor.
 
@@ -151,9 +164,10 @@ Os efeitos são cosméticos: não geram dano, não bloqueiam o jogador e não in
 - [Implementação e verificações da etapa 2](docs/07-prototipo-e-testes.md)
 - [Revisão de interface e evidências Windows/nuvem](docs/08-revisao-interface.md)
 - [Etapa 3: técnicas gráficas e testes](docs/09-tecnicas-graficas.md)
+- [Renderização nativa e acabamento Full HD](docs/10-renderizacao-nativa.md)
 
 O planejamento original foi preservado antes da implementação no commit `bf1db57`. O protótipo tem um marco separado, identificado pela mensagem `feat: registra marco 2 do prototipo jogavel`. Os documentos 01–04 preservam a proposta histórica; o estado efetivo está neste README e no documento 07. A pontuação foi acrescentada por solicitação da etapa 2.
 
-Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb13f`) foram enviados ao GitHub na branch `work`. A etapa 3 tem commit separado (`feat: registra etapa 3 de tecnicas graficas`), com envio à mesma branch autorizado pelo usuário; o resultado é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
+Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb13f`) foram enviados ao GitHub na branch `work`. A etapa 3 (`9c21d5f`) também foi enviada. A revisão de renderização nativa tem commit separado (`fix: renderiza em resolucao nativa e refina arte`), com envio à mesma branch autorizado pelo usuário; o resultado é confirmado ao encerrar a sessão. Para atualizar uma clonagem local limpa, use `git switch work` e `git pull --ff-only origin work`; quem baixou ZIP deve baixar novamente a branch `work`.
 
 A ideia veio do usuário; a implementação e os testes foram redigidos com apoio de ChatGPT/Codex. O teste Windows informado pelo usuário está registrado separadamente dos testes na nuvem. Compreensão do código e verificação interativa das alterações continuam nas próximas atividades. O enunciado do professor Pedro Cândido segue como referência principal. A versão final também exigirá apresentação, créditos completos e demonstração.

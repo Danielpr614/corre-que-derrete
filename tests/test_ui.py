@@ -64,7 +64,7 @@ class WindowTests(unittest.TestCase):
             window.present()
         self.assertFalse(window.fullscreen)
         self.assertEqual(window.screen.get_size(), (800, 600))
-        self.assertEqual(window.canvas.get_size(), (960, 540))
+        self.assertEqual(window.canvas.get_size(), (800, 450))
         after = (app.run.distance, app.run.conservation, app.run.player.rect(app.run.distance),
                  app.run.player.velocity_y, app.accumulator)
         self.assertEqual(before, after)
@@ -83,6 +83,7 @@ class WindowTests(unittest.TestCase):
         for size in SIZES:
             window.screen = pygame.display.set_mode(size, pygame.RESIZABLE)
             window.handle_event(pygame.event.Event(pygame.VIDEORESIZE, size=size))
+            renderer.resize(window.prepare_frame())
             for state, result in cases:
                 with self.subTest(size=size, state=state, result=result):
                     app.set_state(state)
@@ -92,16 +93,18 @@ class WindowTests(unittest.TestCase):
                     for message, rect in renderer.text_rects:
                         self.assertNotIn("↑", message)
                         self.assertNotIn("↓", message)
-                        self.assertTrue(window.canvas.get_rect().contains(rect), message)
+                        self.assertTrue(pygame.Rect(0, 0, 960, 540).contains(rect), message)
                         if state in ("menu", "instructions"):
                             self.assertTrue(pygame.Rect(140, 90, 680, 380).contains(rect), message)
                     if state in ("playing", "result"):
                         messages = [message for message, _ in renderer.text_rects]
                         expected = f"Sorvete: {format_conservation(app.run.conservation)}"
                         self.assertIn(expected, messages)
+                    for message, rect in renderer.physical_text_rects:
+                        self.assertTrue(window.canvas.get_rect().contains(rect), message)
                     window.present()
                     viewport = viewport_rect(size)
-                    self.assertEqual(window.scaled.get_size(), viewport.size)
+                    self.assertEqual(window.canvas.get_size(), viewport.size)
                     # Margens fora da área 16:9 conservam a cor de fundo.
                     if viewport.left:
                         self.assertEqual(window.screen.get_at((0, size[1] // 2))[:3], (18, 25, 36))
@@ -117,7 +120,7 @@ class WindowTests(unittest.TestCase):
             app.start()
             app.run.objects = []
             app.run.jump()
-            renderer = Renderer(window.canvas)
+            renderer = Renderer(window.prepare_frame())
             for _ in range(30):
                 app.update(1 / 60)
             renderer.draw(app)
