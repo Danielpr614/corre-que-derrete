@@ -8,21 +8,24 @@ from game import settings as S
 from game.graphics import Renderer
 from game.run import Run
 from game.window import Window
+from game.audio import Audio
 
 
 class App:
-    def __init__(self):
+    def __init__(self, audio=None):
         self.state = "menu"
         self.selection = 0
         self.running = True
         self.run = Run()
         self.accumulator = 0.0
+        self.audio = audio if audio is not None else Audio()
+        self.audio_return = "menu"
 
     @property
     def options(self):
         return {
-            "menu": ("Iniciar", "Como jogar", "Sair"),
-            "paused": ("Retomar", "Menu", "Sair"),
+            "menu": ("Iniciar", "Como jogar", "Áudio", "Sair"),
+            "paused": ("Retomar", "Menu", "Áudio", "Sair"),
             "result": ("Jogar novamente", "Menu", "Sair"),
         }.get(self.state, ())
 
@@ -37,11 +40,17 @@ class App:
         self.set_state("playing")
 
     def activate(self):
-        if self.selection == 2:
+        option = self.options[self.selection]
+        if option == "Sair":
             self.running = False
-        elif self.selection == 1:
-            self.set_state("instructions" if self.state == "menu" else "menu")
-        elif self.state == "paused":
+        elif option == "Áudio":
+            self.audio_return = self.state
+            self.set_state("audio")
+        elif option == "Como jogar":
+            self.set_state("instructions")
+        elif option == "Menu":
+            self.set_state("menu")
+        elif option == "Retomar":
             self.set_state("playing")
         else:
             self.start()
@@ -58,6 +67,15 @@ class App:
                 self.run.jump()
             elif key in (pygame.K_p, pygame.K_ESCAPE):
                 self.set_state("paused")
+        elif self.state == "audio":
+            if key in (pygame.K_RETURN, pygame.K_SPACE):
+                self.audio.toggle()
+            elif key == pygame.K_LEFT:
+                self.audio.adjust_volume(-.05)
+            elif key == pygame.K_RIGHT:
+                self.audio.adjust_volume(.05)
+            elif key == pygame.K_ESCAPE:
+                self.set_state(self.audio_return)
         elif self.state == "instructions":
             if key in (pygame.K_ESCAPE, pygame.K_RETURN, pygame.K_m):
                 self.set_state("menu")
@@ -99,7 +117,6 @@ def main():
     args = parser.parse_args()
     if args.smoke_frames is not None and args.smoke_frames <= 0:
         parser.error("--smoke-frames deve ser positivo")
-    # Não há áudio nesta etapa. Evitar depender de dispositivo de som.
     pygame.display.init()
     pygame.font.init()
     try:
@@ -107,6 +124,7 @@ def main():
         pygame.display.set_caption("Corre que Derrete! — Protótipo")
         renderer = Renderer(window.canvas)
         app = App()
+        app.audio.initialize()  # Uma vez; trocar telas não reinicia a música.
         clock = pygame.time.Clock()
         frames = 0
         while app.running:

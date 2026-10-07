@@ -84,8 +84,13 @@ def draw_customer(surface, x, feet_y, delivered=False, scale=1.0):
     d.line(INK, (x + 12, top + 50), (x + 10, feet_y), 6)
     d.line(INK, (x + 29, top + 50), (x + 32, feet_y), 6)
     d.line((128, 80, 58), (x + 8, top + 32), (x - 8, top + 29), 5)
-    d.circle(CREAM, (x + 23, top + 10), 2)
-    d.arc(CREAM, (x + 15, top + 12, 11, 9), 3.2, 6.1, 2)
+    # Rosto frontal: olhos simétricos, alinhados e sorriso central.
+    for eye_x in (x + 15, x + 25):
+        d.circle(CREAM, (eye_x, top + 11), 2)
+        d.circle((32, 25, 30), (eye_x, top + 11), 1)
+    d.lines(CREAM, False, [(x + 15, top + 17), (x + 17, top + 19),
+                          (x + 20, top + 20), (x + 23, top + 19),
+                          (x + 25, top + 17)], 1)
     d.arc((55, 37, 36), (x + 8, top + 1, 24, 19), 0, 3.2, 4)
     d.line((169, 208, 175), (x + 11, top + 32), (x + 29, top + 32), 2)
     d.line((41, 88, 69), (x + 10, top + 49), (x + 30, top + 49), 2)

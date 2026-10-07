@@ -166,26 +166,29 @@ class Renderer:
         self.text("P ou Esc: pausar | F11: tela cheia", (610, 501), CREAM, self.small)
 
     def options(self, app, top):
+        spacing, height = (42, 36) if len(app.options) == 4 else (50, 42)
         for index, option in enumerate(app.options):
-            rect = pygame.Rect(300, top + index * 50, 360, 42)
+            rect = pygame.Rect(300, top + index * spacing, 360, height)
             selected = index == app.selection
             self.d.rect(BLUE if selected else (232, 226, 206),
                              rect, border_radius=10)
             self.text(option, rect.center, CREAM if selected else INK, center=True)
-        self.text("Setas para cima/baixo: selecionar | Enter: confirmar", (480, top + 166),
+        self.text("Setas para cima/baixo: selecionar | Enter: confirmar", (480, top + spacing * len(app.options) + 16),
                   center=True, font=self.small)
 
     def draw(self, app):
         self.text_rects.clear()
         self.physical_text_rects.clear()
-        if app.state in ("playing", "paused", "result"):
+        over_run = app.state in ("playing", "paused", "result") or (
+            app.state == "audio" and app.audio_return == "paused")
+        if over_run:
             self.world(app.run)
             self.hud(app.run)
         else:
             self.background.draw(self.screen, 0)
         if app.state == "playing":
             return
-        if app.state in ("paused", "result"):
+        if over_run:
             shade = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
             shade.fill((20, 30, 45, 155))
             self.screen.blit(shade, (0, 0))
@@ -196,7 +199,7 @@ class Renderer:
                       (480, 185), center=True)
             self.text("Corrida de sorvete • Python + Pygame", (480, 221),
                       font=self.small, center=True)
-            self.options(app, 265)
+            self.options(app, 250)
             self.text("Esc: sair | F11: tela cheia", (480, 459), font=self.small, center=True)
         elif app.state == "instructions":
             self.text("COMO JOGAR", (480, 117), font=self.heading, center=True)
@@ -215,6 +218,24 @@ class Renderer:
                 self.text(line, (153, 160 + index * 29), font=self.small)
             self.text("Enter / Esc: voltar ao menu", (480, 451),
                       font=self.font, center=True)
+        elif app.state == "audio":
+            self.text("ÁUDIO", (480, 120), font=self.heading, center=True)
+            status = "Ligada" if app.audio.enabled else "Desligada"
+            self.text(f"Música: {status}", (480, 177), center=True)
+            self.text(f"Volume: {round(app.audio.volume * 100)}%", (480, 220), center=True)
+            self.d.rect((216, 222, 219), (300, 250, 360, 16), border_radius=7)
+            if app.audio.volume > 0:
+                self.d.rect(BLUE, (300, 250, round(360 * app.audio.volume), 16), border_radius=7)
+            self.text("Enter ou Espaço: ligar/desligar a música", (480, 303), center=True)
+            self.text("Setas esquerda/direita: ajustar o volume", (480, 337), center=True)
+            if not app.audio.available:
+                self.text("Som indisponível; o jogo continua sem música.", (480, 372), center=True, font=self.small)
+            elif app.audio.save_warning:
+                self.text("Não foi possível salvar a preferência nesta pasta.", (480, 372), center=True, font=self.small)
+            self.text("House In a Forest Loop - HorrorPen | CC BY 3.0", (480, 410), center=True, font=self.small)
+            back = "pausa" if app.audio_return == "paused" else "menu"
+            self.text(f"Esc: voltar à {back}" if back == "pausa" else "Esc: voltar ao menu",
+                      (480, 451), center=True)
         elif app.state == "paused":
             self.text("PAUSADO", (480, 133), font=self.heading, center=True)
             self.text("A corrida e o derretimento estão congelados.", (480, 190), center=True)

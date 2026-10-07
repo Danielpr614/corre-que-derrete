@@ -95,6 +95,18 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Registro:** README, diário e créditos atualizados; relatório 10 criado. Commit separado `fix: renderiza em resolucao nativa e refina arte`, com push autorizado para `work`; resultado confirmado ao fim da sessão.
 
+## 07/10/2026 — Cliente frontal e áudio
+
+**Pedido/evidência:** captura do usuário mostrou olho único e boca irregular no cliente da vitória. Solicitada correção compartilhada com a chegada e música licenciada com controles/persistência. A captura não valida a nova versão.
+
+**Implementação assistida por Codex:** dois olhos simétricos com pupilas contrastantes e sorriso central; perfil do entregador preservado. Novo módulo audio.py, faixa Ogg licenciada incluída, Áudio no menu/pausa, controles, volume inicial 15%, loop contínuo e preferências locais; falhas não impedem jogar. Regras e técnicas gráficas preservadas.
+
+**Fonte:** House In a Forest Loop, HorrorPen, CC BY 3.0, obtida da cópia Godot com autoria/licença declaradas no README específico. Créditos completos em assets/audio/CREDITOS.md; nenhuma licença inventada, nenhum áudio gerado por IA.
+
+**Verificações reais:** 59 testes passaram; 11 novos de áudio. Mixer dummy carregou/reproduziu Ogg e permaneceu ativo após 28 s. Entrada por cinco quadros e caminhos a partir de outra pasta; layouts em quatro tamanhos. Inspeção estática de chegada/vitória em 960 × 540 e Full HD, rosto ampliado e tela Áudio. Sem audição, jogo humano ou janela interativa Windows. Relatório 11 detalha evidências e pendências.
+
+**Histórico:** correção e áudio em um commit separado, com push solicitado para work; resultado informado ao encerrar. Pendente conferir rosto/F11, música, controles, persistência e pausa no computador.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

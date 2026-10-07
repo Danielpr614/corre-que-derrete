@@ -78,6 +78,12 @@ Origem dos detalhes de personagem, cenário, obstáculos, gelo e cliente: desenh
 
 Validação: 48 testes na nuvem, entrada dummy por cinco quadros e inspeção de imagens 1920 × 1080 com valores preparados. Ajustados testes que exigiam a antiga superfície fixa; corrigidas franjas de antialiasing em superfícies transparentes e repetida a suíte. Sem teste Windows da revisão, medição de FPS/DPI/memória ou partida humana. O relatório 10 descreve arquitetura, evidências e pendências.
 
+## Atualização — rosto do cliente e áudio
+
+07/10/2026. ChatGPT/Codex apoiou correção de draw_customer, módulo audio.py, integração de estados/interface, testes e documentação. Desenho geométrico próprio da implementação assistida; entregador preservado. Música não gerada por IA: **House In a Forest Loop**, **HorrorPen**, **CC BY 3.0**, reutilizada sem modificar o conteúdo do Ogg. Fonte consultada: README específico do demo Godot e arquivo no commit fixado. Créditos, links, hash e limites da consulta estão em [créditos musicais](../assets/audio/CREDITOS.md).
+
+Verificações: 59 testes, Ogg e loop no mixer dummy, renderização de layouts em quatro tamanhos e inspeção de imagens da chegada/vitória em janela 960 × 540 e Full HD. Sem audição ou teste interativo Windows; adequação sonora pendente. A captura do usuário evidencia apenas o problema anterior. Detalhes no [relatório 11](11-cliente-e-audio.md). Não houve novas dependências, recursos visuais externos ou licença atribuída ao projeto inteiro.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

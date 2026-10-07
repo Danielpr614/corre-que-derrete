@@ -273,10 +273,10 @@ class StateTests(unittest.TestCase):
         for state in ("menu", "paused", "result"):
             app = App()
             app.set_state(state)
-            app.selection = 2
+            app.selection = app.options.index("Sair")
             press(app, pygame.K_RETURN)
             self.assertFalse(app.running)
-        for state in ("menu", "instructions", "playing", "paused", "result"):
+        for state in ("menu", "instructions", "playing", "paused", "result", "audio"):
             app = App()
             app.set_state(state)
             app.handle_event(pygame.event.Event(pygame.QUIT))
