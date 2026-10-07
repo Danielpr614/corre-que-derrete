@@ -2,7 +2,16 @@
 
 Jogo 2D de corrida lateral, em Python 3 e Pygame, para a disciplina de Computação Gráfica do professor Pedro Cândido.
 
-**Preparação da entrega — 07/10/2026.** A versão `23f755e` foi testada no Windows pelo usuário, que confirmou visual e áudio satisfatórios. O enunciado anexado foi relido; os requisitos funcionais estão implementados, mas a entrega acadêmica ainda depende de slides PPTX/PDF, identificação/contribuições, evidências selecionadas, ensaio e pacote de segurança. Veja a [conferência completa dos requisitos](docs/12-conferencia-do-enunciado.md) e o [roteiro de apresentação](docs/15-roteiro-apresentacao.md). Esta revisão altera somente documentação.
+**Preparação da entrega — 07/10/2026.** A versão `23f755e` foi testada no Windows pelo usuário, que confirmou visual e áudio satisfatórios. O enunciado anexado foi relido; os requisitos funcionais estão implementados, mas a entrega acadêmica ainda depende de slides PPTX/PDF, evidências selecionadas, ensaio e pacote de segurança. Veja a [conferência completa dos requisitos](docs/12-conferencia-do-enunciado.md) e o [roteiro de apresentação](docs/15-roteiro-apresentacao.md). Esta revisão altera somente documentação.
+
+## Identificação acadêmica
+
+- Integrante informado: **Daniel Pena**. Outros integrantes só serão adicionados quando informados.
+- Turma: **7º período de Engenharia da Computação**.
+- Professor: **Pedro Cândido**.
+- Entrega: **16 de outubro** (ano de referência desta revisão: 2026).
+- Apresentação: **data ainda não definida pelo professor**.
+- Contribuições registradas: Daniel forneceu a ideia, orientou o escopo/revisões e testou no Windows. Código, desenhos, testes automatizados e documentação tiveram apoio amplo de ChatGPT/Codex; detalhes no registro de fontes e IA.
 
 ## Objetivo e regras
 
@@ -202,7 +211,7 @@ Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb
 
 | Recurso / ferramenta | Autoria, fonte e licença | Uso no projeto |
 | --- | --- | --- |
-| Tema e decisões solicitadas | Usuário/estudante, nome ainda não informado | Ideia de entregador/sorvete, escopo, revisões e testes Windows relatados. |
+| Tema e decisões solicitadas | Daniel Pena | Ideia de entregador/sorvete, escopo, revisões e testes Windows relatados. |
 | Código e desenhos geométricos | Implementação elaborada com apoio amplo de ChatGPT/Codex | Módulos, primitivas de personagens/cenário/objetos, testes e documentação; não copiados de uma base de jogo. Nenhuma licença geral escolhida para o projeto. |
 | Python 3 | Python Software Foundation, https://www.python.org/; licença PSF: https://docs.python.org/3/license.html | Linguagem e biblioteca padrão. |
 | Pygame 2.6.1 | Comunidade Pygame, https://www.pygame.org/; LGPL informada nos metadados do pacote | Desenho, eventos, tempo, retângulos, fontes e mixer. |
@@ -211,10 +220,10 @@ Os marcos de planejamento (`bf1db57`), protótipo (`2ef4366`) e interface (`52fb
 | ChatGPT/Codex | OpenAI, https://openai.com/chatgpt/ | Concepção, implementação, desenhos por código, testes, diagnóstico, documentação e Git. Finalidades, arquivos afetados e validações por marco em [fontes e IA](docs/06-fontes-e-ia.md). Não afirmar autoria humana exclusiva. |
 | Enunciado | Professor Pedro Cândido; DOCX fornecido pelo usuário | Referência acadêmica principal, relida nesta revisão. Sem licença informada. |
 
-Os três repositórios de jogos indicados pelo professor estão registrados como referências de estudo; não foi afirmada consulta de seus conteúdos nem adaptação de código deles. Não foram usados sprites/imagens externos ou gerados por IA. A música não foi gerada por IA. O estudante deve compreender o conteúdo entregue e declarar contribuições reais de cada integrante.
+Os três repositórios de jogos indicados pelo professor estão registrados como referências de estudo; não foi afirmada consulta de seus conteúdos nem adaptação de código deles. Não foram usados sprites/imagens externos ou gerados por IA. A música não foi gerada por IA. Daniel deve compreender o conteúdo entregue. Se outros integrantes forem adicionados, registrar seus nomes e contribuições reais.
 
 ## Problemas conhecidos e preparação da entrega
 
 Não há falha crítica relatada no teste Windows atual. Permanecem limites de escopo e evidência: alvo de 60 FPS sem medição; possível custo ao regenerar caches durante mudanças de tamanho; textos pequenos em janelas muito pequenas; colisões por retângulos aproximados, sem máscaras; sem ranking ou salvamento de partida; sem `.exe` autônomo. Áudio indisponível e escrita de preferências sem permissão são tratados com aviso. Não usar a ausência de falhas nos testes como prova de ausência de bugs.
 
-Para finalizar: preencher identificação/contribuições, montar PPTX/PDF pelo roteiro, incorporar capturas reais e comparar etapas, ensaiar na máquina da avaliação, conferir o pacote com todos os arquivos rastreados e guardar cópia offline. O vídeo curto de segurança é recomendado pelo professor e ainda não foi gravado. Não incluir `.venv/`, `work/`, caches ou preferências `.local/` no pacote. As capturas do usuário estão na conversa, sem arquivos já arquivados no Git. O [índice de evidências](docs/14-evidencias-e-evolucao.md) distingue os registros existentes dos materiais a preparar.
+Para finalizar: montar PPTX/PDF pelo roteiro, incorporar capturas reais e comparar etapas, ensaiar na máquina da avaliação, conferir o pacote com todos os arquivos rastreados e guardar cópia offline. O vídeo curto de segurança é recomendado pelo professor e ainda não foi gravado. Não incluir `.venv/`, `work/`, caches ou preferências `.local/` no pacote. As capturas do usuário estão na conversa, sem arquivos já arquivados no Git. O [índice de evidências](docs/14-evidencias-e-evolucao.md) distingue os registros existentes dos materiais a preparar.

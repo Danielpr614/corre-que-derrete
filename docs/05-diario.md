@@ -117,6 +117,10 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Pendências reais:** nomes/turma/datas e divisão efetiva; slides PPTX/PDF com capturas arquivadas; ensaio/domínio do código; pacote/cópia offline e vídeo recomendado. Não há entrega formal realizada ou etapa 4 concluída declarada. Documentação em commit separado; push solicitado para work e resultado informado ao encerrar.
 
+## 07/10/2026 — Identificação informada após a conferência
+
+Daniel Pena informou ser o único integrante a registrar por enquanto, com turma do 7º período de Engenharia da Computação. Entrega: 16 de outubro, mantendo 2026 como ano de referência desta revisão; apresentação ainda sem data definida pelo professor. Não adicionar futuros integrantes sem solicitação. README, matriz atual, índice de evidências e roteiro atualizados em novo commit documental; contribuições conhecidas mantidas, sem atribuir escrita de código não relatada. A identificação foi recebida após o envio do commit 425a90f. Não houve testes do jogo nesta atualização.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

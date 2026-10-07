@@ -43,11 +43,11 @@ O PPTX/PDF deve incorporar as imagens selecionadas. Capturas da conversa e image
 
 | Responsável | Contribuição registrada |
 | --- | --- |
-| Usuário/estudante, nome não informado | Ideia inicial; definição do escopo solicitado; orientações das revisões; testes e capturas no Windows; avaliação atual de visual/áudio. Não há registro nominal de escrita de módulos pelo usuário. |
+| Daniel Pena, único integrante informado | Ideia inicial; definição do escopo solicitado; orientações das revisões; testes e capturas no Windows; avaliação atual de visual/áudio. Não há registro de escrita de módulos por Daniel. |
 | ChatGPT/Codex, OpenAI | Apoio à concepção; implementação ampla do código, desenhos geométricos, testes e documentação; diagnóstico, revisões e operações Git autorizadas. Partes por etapa em docs 06. |
-| Outros integrantes | Composição do grupo e contribuições não informadas. Não atribuir módulos, testes ou slides a pessoas fictícias. |
+| Outros integrantes | Nenhum outro integrante informado; Daniel pediu que novos nomes só sejam acrescentados mediante solicitação. Não atribuir módulos, testes ou slides a pessoas fictícias. |
 
-Preencher identificação e contribuições efetivas antes da entrega. Se for individual, registrar esse formato após confirmação; o nome da conta GitHub não comprova a identidade ou contribuição de um integrante.
+Daniel informou: 7º período de Engenharia da Computação; entrega em 16 de outubro (ano de referência: 2026); data da apresentação ainda não definida pelo professor. A lista atual contém apenas Daniel, conforme sua solicitação, sem presumir futuros integrantes. Se houver mudança, registrar nomes e contribuições efetivas.
 
 ## Verificações desta revisão documental
 

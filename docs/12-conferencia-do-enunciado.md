@@ -29,22 +29,22 @@ Não foi reutilizado código dos três repositórios de jogos indicados pelo pro
 
 Arte: primitivas próprias da implementação assistida, sem imagens externas. Fonte padrão e biblioteca Pygame creditadas. Música: HorrorPen, **House In a Forest Loop**, **CC BY 3.0**, Ogg incluído, origem e atribuição em [créditos musicais](../assets/audio/CREDITOS.md). A cópia Godot foi usada apenas para obter a faixa e verificar sua declaração de licença; nenhum código do demo foi adaptado. Fontes e IA: [registro completo](06-fontes-e-ia.md). Não existe uma licença geral escolhida para o código do projeto; isso não altera a licença da música.
 
-Não apresentar o código como escrito exclusivamente pelo estudante. O uso de IA está declarado com finalidade, partes afetadas e verificação. Nomes, composição do grupo e contribuições individuais ainda não foram informados. Datas e turma estão em branco no enunciado. A defesa e a observância das regras da disciplina não podem ser substituídas pelos testes automatizados.
+Não apresentar o código como escrito exclusivamente pelo estudante. O uso de IA está declarado com finalidade, partes afetadas e verificação. Identificação informada nesta revisão: Daniel Pena, único integrante por enquanto; 7º período de Engenharia da Computação; entrega em 16 de outubro (ano de referência: 2026); apresentação ainda sem data definida pelo professor. Contribuições conhecidas estão no índice 14. Os campos do anexo estavam em branco; esses dados vieram do usuário. A defesa e a observância das regras da disciplina não podem ser substituídas pelos testes automatizados.
 
 ## Etapas e entregáveis — seções 6 e 7
 
 | Item | Evidência atual | Pendência |
 | --- | --- | --- |
-| Concepção | Commit `bf1db57`; docs 01–04: tema, gênero, público, regras, esboços textuais, fluxo e tarefas propostas. | Identificação e divisão real das contribuições humanas. |
+| Concepção | Commit `bf1db57`; docs 01–04: tema, gênero, público, regras, esboços textuais, fluxo e tarefas propostas. | Daniel identificado e contribuições conhecidas registradas; acrescentar outros integrantes somente quando informados. |
 | Protótipo jogável | `2ef4366`; relatório 07 e diário: movimento, salto, colisões, recursos provisórios e 27 testes. | Nenhuma funcionalidade desse marco pendente. |
 | Versão intermediária | `52fb13f`, `9c21d5f`, `26d723c`, `23f755e`; UI, técnicas, renderização e áudio. | Consolidar capturas reais para os slides. |
-| Versão final | Código atual, README, créditos, matriz, manual técnico, evidências e roteiro. | Apresentação PPTX/PDF, identificação, ensaio e pacote de entrega. Este registro documental não declara encerrada a etapa 4. |
+| Versão final | Código atual, README, créditos, matriz, manual técnico, evidências e roteiro. | Apresentação PPTX/PDF, ensaio e pacote de entrega. Este registro documental não declara encerrada a etapa 4. |
 | Código-fonte completo | Arquivos rastreados pelo Git, módulos, dependência e Ogg. `work/`, `.venv/`, `.local/` e caches ignorados. | Gerar/conferir pacote final sem arquivos temporários; não incluir preferências pessoais. |
 | README | Instalação, execução, regras, controles, estrutura, créditos e limitações revisados. | Conferir o comando no computador da avaliação. |
 | Dependências | `pygame==2.6.1`; instalação limpa e `pip check` registrados no marco 2. | Registrar eventual instalação nova no computador de demonstração quando ocorrer. |
 | Apresentação PPTX ou PDF | [Roteiro de 13 minutos](15-roteiro-apresentacao.md) com demonstração e conteúdo técnico. | O roteiro Markdown não substitui o arquivo PPTX/PDF exigido. Montar/exportar slides com capturas e identificação. |
-| Créditos | README, docs 06, arquivo de créditos junto da música. | Preencher nomes e contribuições reais; preservar atribuição ao redistribuir. |
-| Evolução/divisão de tarefas | [Índice de evidências](14-evidencias-e-evolucao.md), commits e diário. | Nomes e divisão efetiva; capturas da conversa não estão arquivadas no Git. |
+| Créditos | README, docs 06, arquivo de créditos junto da música. | Daniel e contribuições conhecidas registrados; preservar atribuição ao redistribuir. |
+| Evolução/divisão de tarefas | [Índice de evidências](14-evidencias-e-evolucao.md), commits e diário. | Capturas da conversa não estão arquivadas no Git; registrar mudanças futuras na equipe. |
 | Demonstração | `python main.py` executável com Python/Pygame; relatos de execução no Windows. | Ensaio na máquina da avaliação e cópia de segurança; vídeo curto recomendado. Não há `.exe` autônomo. Se o professor exigir especificamente esse formato, esclarecer/empacotar; o enunciado não especifica formato binário. |
 
 ## Conteúdo da apresentação e rubrica — seções 8–10
@@ -61,7 +61,7 @@ O roteiro 15 cobre identificação, conceito, fontes, regras/estados, arquitetur
 | Estabilidade e testes — 2 | Relatórios 07–11 e testes existentes | Instalação/ensaio no computador de avaliação e evidência de estabilidade. |
 | Documentação da construção — 3 | Diário, índice e roteiro | Slides PPTX/PDF, capturas e contribuições. |
 | Apresentação e defesa — 4 | Roteiro proposto | Ensaio, participação, demonstração e respostas; ainda não realizados. |
-| Originalidade e fontes — 1 | Registro de fontes/IA e créditos musicais | Identificação humana e transparência durante a defesa. |
+| Originalidade e fontes — 1 | Registro de fontes/IA e créditos musicais | Transparência e compreensão do código durante a defesa. |
 
 Não estimar uma nota de 30 pontos: os níveis da seção 10 dependem das evidências e da avaliação do professor.
 
@@ -77,7 +77,7 @@ Não estimar uma nota de 30 pontos: os níveis da seção 10 dependem das evidê
 | Dependência em ambiente limpo | Evidência no relatório 07, sem alegar instalação nova nesta revisão. |
 | Sem senhas/caminhos pessoais/temporários/dependências ocultas | Arquivos rastreados conferidos nesta revisão; apenas Pygame externo. Pacote final deve excluir diretórios ignorados. |
 | Apresentação com intermediárias e técnicas | Roteiro e índice prontos; PPTX/PDF e capturas arquivadas pendentes. |
-| Contribuições e IA declaradas | IA e contribuição conhecida do usuário registradas; identificação/divisão nominal pendente. |
+| Contribuições e IA declaradas | IA e contribuições conhecidas de Daniel Pena registradas; nenhuma divisão fictícia de módulos. |
 | Recursos/códigos externos creditados | Pygame/Python/fonte, faixa e IA; nenhum código de jogo externo adaptado. |
 | Cópia de segurança e vídeo | Ainda não preparados como entregáveis; vídeo recomendado, não obrigação absoluta. |
 
@@ -85,7 +85,7 @@ Para a avaliação, preparar uma cópia offline e, preferencialmente, vídeo. Re
 
 ## Ordem sugerida para finalizar
 
-1. Preencher nomes, turma, datas e contribuições reais; revisar entendimento do código.
+1. Revisar entendimento do código e confirmar a data da apresentação quando definida; atualizar contribuições caso a equipe mude.
 2. Montar PPTX/PDF a partir do roteiro, incluindo capturas reais e comparação das etapas.
 3. Ensaiar no computador da avaliação, registrar ambiente e estabilidade; preparar demonstração e respostas.
 4. Conferir pacote final com código, dependência, Ogg e créditos; guardar cópia offline e gravar vídeo curto de segurança.

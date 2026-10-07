@@ -2,13 +2,13 @@
 
 Proposta de **13 minutos**, com demonstração dentro desse tempo. O enunciado recomenda 10–15 minutos de exposição, seguida de perguntas e demonstração; confirmar o formato com o professor. Se ele preferir a demonstração depois, usar os minutos 9:15–11:45 para aprofundar o código e fazer a demonstração ao final. Este arquivo é um roteiro, não o PPTX/PDF exigido.
 
-Antes de montar slides: preencher nomes, turma, professor Pedro Cândido, data, formato individual/equipe e contribuições reais. Não inserir uma divisão fictícia. Havendo equipe, distribuir blocos entre os integrantes e garantir que todos saibam explicar o código central. Ensaiar com cronômetro; o roteiro ainda não foi ensaiado.
+Identificação para os slides: Daniel Pena, único integrante informado; 7º período de Engenharia da Computação; professor Pedro Cândido; entrega em 16 de outubro (ano de referência: 2026); apresentação com data a definir pelo professor. Contribuições conhecidas no índice 14. Não inserir uma divisão fictícia. Havendo equipe, distribuir blocos entre os integrantes e garantir que todos saibam explicar o código central. Ensaiar com cronômetro; o roteiro ainda não foi ensaiado.
 
 ## Slides, tempo e fala sugerida
 
 | Tempo | Slide / conteúdo | Fala e evidência a preparar |
 | --- | --- | --- |
-| 0:00–0:45 | 1. Identificação e objetivo | “Corre que Derrete! é uma corrida lateral curta em Python e Pygame. O entregador avança sozinho; precisamos chegar ao cliente antes que o sorvete derreta.” Público: colegas e jogadores iniciantes. Preencher integrantes. |
+| 0:00–0:45 | 1. Identificação e objetivo | “Corre que Derrete! é uma corrida lateral curta em Python e Pygame. O entregador avança sozinho; precisamos chegar ao cliente antes que o sorvete derreta.” Público: colegas e jogadores iniciantes. Identificar Daniel Pena. |
 | 0:45–1:45 | 2. Conceito, escopo e referências | Mostrar esboço textual/fluxo dos docs 01–02. Explicar que conservação reúne tempo e dano numa regra ligada ao tema. Uma rota, três trechos, dois obstáculos e gelo. Não afirmar estudo dos três repositórios indicados; estão registrados como referências futuras. Explicar uso do Pygame e fonte musical efetivamente consultada. |
 | 1:45–2:45 | 3. Regras, controles e estados | Conservação: 100%, -2 pontos percentuais/s, -20 por dano e +15 por gelo até 100%. Pontos: metros inteiros + 100/gelo. Espaço/cima salta, P/Esc pausa, menus por setas/Enter e F11. Mostrar diagrama do relatório 13 e vitória/derrota. |
 | 2:45–4:00 | 4. Arquitetura e loop | Mostrar os principais módulos, sem uma lista ilegível de todos. “App trata eventos; Run aplica regras; Renderer desenha; Window gerencia apresentação.” Explicar Clock, passo 1/60 s e pausa sem consumir conservação. Mostrar trechos curtos de `main`/`App.update`. |
@@ -17,7 +17,7 @@ Antes de montar slides: preencher nomes, turma, professor Pedro Cândido, data, 
 | 7:15–8:15 | 7. Evolução visível | Linha do tempo dos commits e comparação de capturas do protótipo/atual. “Preservamos planejamento, protótipo, técnicas e revisões em marcos separados.” Usar o índice 14 e rotular a origem das imagens. Não atribuir dias distintos aos commits da mesma data. |
 | 8:15–9:15 | 8. Dificuldades, soluções e testes | Cena 960 × 540 esticada → renderização nativa/fontes maiores; símbolos sem glifo → texto por extenso; rosto frontal → dois olhos/sorriso. 59 testes dummy no último marco, instalação limpa anterior e testes Windows do usuário. Declarar que 60 FPS é alvo, sem medição. |
 | 9:15–11:45 | 9. Demonstração ao vivo | Executar sequência abaixo. Mostrar controles, progressão, feedback, pausa/Áudio, F11 e conclusão/reinício. Não editar código ou usar vitória forçada como evidência de jogabilidade. |
-| 11:45–13:00 | 10. Resultados, créditos, contribuições e IA | Visual/áudio confirmados satisfatórios no Windows pelo usuário. Dar crédito a HorrorPen/CC BY 3.0, Pygame/Python/fonte e ChatGPT/Codex. “A IA apoiou amplamente implementação, testes e documentação; o estudante forneceu a ideia e testou no Windows.” Acrescentar contribuição nominal real e limitações. Abrir para perguntas. |
+| 11:45–13:00 | 10. Resultados, créditos, contribuições e IA | Visual/áudio confirmados satisfatórios no Windows pelo usuário. Dar crédito a HorrorPen/CC BY 3.0, Pygame/Python/fonte e ChatGPT/Codex. “A IA apoiou amplamente implementação, testes e documentação; o estudante forneceu a ideia e testou no Windows.” Explicar as contribuições registradas de Daniel Pena e as limitações. Abrir para perguntas. |
 
 Para reduzir a 10 minutos, resumir conceito, arquitetura e evolução, mantendo explicação das três técnicas. Para chegar a 15 minutos, ampliar leitura do código e demonstração; não inventar testes ou alongar com volume de código.
 
@@ -60,7 +60,7 @@ Preparar respostas localizando código e mostrando exemplos; não decorar frases
 
 ## Materiais ainda a preparar
 
-- PPTX ou PDF com estes dez slides, identificação, diagramas, capturas e créditos.
+- PPTX ou PDF com estes dez slides, identificação já informada, diagramas, capturas e créditos.
 - Capturas reais selecionadas e comparação com protótipo, conforme índice 14.
 - Pacote offline do jogo completo e ambiente verificado no computador da avaliação.
 - Vídeo curto de segurança, recomendado pelo enunciado, ainda não gravado.
