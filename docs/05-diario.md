@@ -27,6 +27,28 @@ Registrar ações realizadas separadamente de intenções. Datas no fuso do usu�
 
 **Próximo marco:** revisão da concepção pelo estudante e, quando solicitada a implementação, protótipo com recursos provisórios. Valores numéricos dependem de verificação futura.
 
+## 07/10/2026 — Etapa 2: protótipo jogável
+
+**Solicitação:** avançar para o protótipo, preservar o planejamento no Git antes de implementar e registrar um segundo marco separado. Pontuação foi acrescentada aos requisitos pelo usuário.
+
+**Preservação:** criado o commit `bf1db57` (`docs: registra marco 1 de concepcao e planejamento`) com o README e os seis documentos da etapa 1, antes de escrever código do jogo. A entrada anterior continua descrevendo apenas aquela primeira sessão.
+
+**Implementado com apoio de IA:** entrada `main.py`; módulos `settings`, `entities`, `run`, `app` e `graphics`; corrida, salto, gravidade, obstáculos, colisões, gelo, derretimento, três trechos, vitória/derrota, menus, instruções, pausa, reinício, HUD e pontuação. Arte provisória com formas do Pygame e fonte padrão da biblioteca, sem áudio ou recursos externos de arte.
+
+**Documentação e dependências:** Pygame 2.6.1 fixado em `requirements.txt`; README atualizado com comandos e instruções Windows/VS Code; relatório `07-prototipo-e-testes.md` criado; declaração de IA ampliada. Os documentos originais 01–04 permanecem como planejamento histórico.
+
+**Verificações realizadas na nuvem:** 27 testes automatizados passaram; instalação do `requirements.txt` num ambiente virtual novo com Python 3.12.14 concluída; suíte repetida nesse ambiente com sucesso; `pip check` sem dependências quebradas; entrada executada por cinco quadros com SDL dummy a partir de outro diretório; compilação Python sem erro. O teste de reinício foi ajustado para realmente repetir três partidas na mesma instância do controlador e passou. Resultados e procedimentos detalhados no documento 07.
+
+**Problema observado e solução:** a primeira instalação no ambiente novo falhou por restrição de rede do sandbox ao proxy. A instalação foi repetida com acesso de rede permitido e sem cache, e funcionou. Não foi observada falha funcional na suíte; isso não comprova ausência de bugs fora da cobertura.
+
+**Limites:** não houve instalação no Windows, inspeção visual humana, teclado real, partida humana, ajuste de equilíbrio baseado em jogadores nem medição de FPS. O caminho vencedor do teste usa posições internas da rota. Parallax, animação por quadros e partículas seguem pendentes para a próxima etapa.
+
+**Contribuições:** usuário definiu o escopo da etapa e a pontuação no HUD; ChatGPT/Codex redigiu código, testes e atualizações documentais e executou as verificações descritas. Não foi registrada revisão humana do código ou das telas. Integrantes e divisão de contribuições humanas continuam a definir.
+
+**Marco Git:** commit separado com mensagem `feat: registra marco 2 do prototipo jogavel`; consultar `git log --oneline` para o identificador. Commits locais na branch `work`; nenhum `git push` foi executado. Publicação/sincronização da branch no GitHub permanece uma ação pendente.
+
+**Próximo passo:** baixar/publicar a versão correta, executar no Windows, registrar observações reais e revisar dificuldades antes do marco 3 de gráficos e acabamento.
+
 ## Modelo para próximas entradas
 
 - Data e marco:

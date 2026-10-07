@@ -36,6 +36,22 @@ Não escolher uma base pronta apenas para trocar imagens. Se houver adaptação 
 - **Validação humana pendente:** estudante deve revisar as decisões, compreender as técnicas e, nas etapas seguintes, validar o código e registrar resultados observados. Não há aprovação humana da proposta registrada neste momento.
 - **Limites:** nenhum código de jogo ou recurso visual final foi gerado; não foram realizados testes de jogabilidade nem inventados resultados, contribuições ou dificuldades de implementação.
 
+## Atualização — IA e biblioteca na etapa 2
+
+Data: 07/10/2026. Ferramenta: ChatGPT/Codex, da OpenAI; sem versão específica registrada.
+
+**Finalidade:** implementar o protótipo autorizado pelo usuário, escrever verificações automatizadas e atualizar instruções/documentação. O código foi elaborado nesta sessão com apoio de IA; não foi copiado de um jogo de referência.
+
+**Partes afetadas:** `main.py`, `game/__init__.py`, `game/settings.py`, `game/entities.py`, `game/run.py`, `game/app.py`, `game/graphics.py`, `tests/__init__.py`, `tests/test_rules.py`, `.gitignore`, `requirements.txt`, `README.md`, este registro, o diário e `docs/07-prototipo-e-testes.md`.
+
+**Validação observada:** execução de 27 testes automatizados na nuvem, instalação em ambiente virtual novo, `pip check`, inicialização/renderização com SDL dummy por cinco quadros e compilação. O relatório 07 descreve os casos, a restrição inicial de rede e a solução. Não houve validação humana, teste visual, teste de Windows ou partida humana.
+
+**Crédito de tecnologia:** Pygame 2.6.1, comunidade Pygame, https://www.pygame.org/ e https://www.pygame.org/docs/. Licença informada nos metadados da distribuição instalada: LGPL. Fonte padrão fornecida pelo pacote Pygame; não foi importada uma fonte de terceiros separadamente. Observar os avisos e licenças do pacote ao distribuí-lo. Python 3, Python Software Foundation, https://www.python.org/, é a linguagem/runtime.
+
+**Recursos:** desenhos do protótipo foram construídos no código com primitivas do Pygame, com apoio de IA; sem imagens geradas, músicas, sons ou pacotes de arte externos. Não há adaptação de trechos dos repositórios de referência. Os links desses repositórios continuam como indicações de estudo futuro.
+
+**Responsabilidade humana pendente:** ler e compreender o código e as regras, experimentar o protótipo no computador, confirmar a clareza das telas e registrar ajustes reais. A implementação assistida não deve ser apresentada como escrita exclusivamente pelo estudante.
+
 ## Registro a completar a cada novo recurso ou uso de IA
 
 Para código, imagem, fonte tipográfica, áudio, tutorial ou ferramenta: autor, título, link, licença disponível, data, arquivos/trechos afetados, uso (estudo/adaptação/reutilização), alterações e validação. Para IA, incluir ferramenta, finalidade, resultado adotado e como a pessoa responsável verificou esse resultado.

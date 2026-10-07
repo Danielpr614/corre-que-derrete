@@ -1,0 +1,124 @@
+"""Estados, entrada do teclado e laço principal com passo fixo."""
+
+import argparse
+
+import pygame
+
+from game import settings as S
+from game.graphics import Renderer
+from game.run import Run
+
+
+class App:
+    def __init__(self):
+        self.state = "menu"
+        self.selection = 0
+        self.running = True
+        self.run = Run()
+        self.accumulator = 0.0
+
+    @property
+    def options(self):
+        return {
+            "menu": ("Iniciar", "Como jogar", "Sair"),
+            "paused": ("Retomar", "Menu", "Sair"),
+            "result": ("Jogar novamente", "Menu", "Sair"),
+        }.get(self.state, ())
+
+    def set_state(self, state):
+        self.state = state
+        self.selection = 0
+        self.accumulator = 0.0
+
+    def start(self):
+        # Reconstruir a corrida restaura também objetos e temporizadores.
+        self.run = Run()
+        self.set_state("playing")
+
+    def activate(self):
+        if self.selection == 2:
+            self.running = False
+        elif self.selection == 1:
+            self.set_state("instructions" if self.state == "menu" else "menu")
+        elif self.state == "paused":
+            self.set_state("playing")
+        else:
+            self.start()
+
+    def handle_event(self, event):
+        if event.type == pygame.QUIT:
+            self.running = False
+            return
+        if event.type != pygame.KEYDOWN or getattr(event, "repeat", False):
+            return
+        key = event.key
+        if self.state == "playing":
+            if key in (pygame.K_SPACE, pygame.K_UP):
+                self.run.jump()
+            elif key in (pygame.K_p, pygame.K_ESCAPE):
+                self.set_state("paused")
+        elif self.state == "instructions":
+            if key in (pygame.K_ESCAPE, pygame.K_RETURN, pygame.K_m):
+                self.set_state("menu")
+        elif self.state in ("menu", "paused", "result"):
+            if key == pygame.K_UP:
+                self.selection = (self.selection - 1) % len(self.options)
+            elif key == pygame.K_DOWN:
+                self.selection = (self.selection + 1) % len(self.options)
+            elif key == pygame.K_RETURN:
+                self.activate()
+            elif key == pygame.K_m and self.state != "menu":
+                self.set_state("menu")
+            elif key == pygame.K_p and self.state == "paused":
+                self.set_state("playing")
+            elif key == pygame.K_ESCAPE:
+                if self.state == "menu":
+                    self.running = False
+                elif self.state == "paused":
+                    self.set_state("playing")
+                else:
+                    self.set_state("menu")
+
+    def update(self, frame_time):
+        if self.state != "playing":
+            return
+        self.accumulator += max(0.0, min(frame_time, S.MAX_FRAME_TIME))
+        while self.accumulator + 1e-12 >= S.FIXED_STEP:
+            self.accumulator -= S.FIXED_STEP
+            self.run.update(S.FIXED_STEP)
+            if self.run.result:
+                self.set_state("result")
+                break
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Corre que Derrete! — protótipo")
+    parser.add_argument("--smoke-frames", type=int, metavar="N",
+                        help="encerra após N quadros; útil para verificação sem tela")
+    args = parser.parse_args()
+    if args.smoke_frames is not None and args.smoke_frames <= 0:
+        parser.error("--smoke-frames deve ser positivo")
+    # Não há áudio nesta etapa. Evitar depender de dispositivo de som.
+    pygame.display.init()
+    pygame.font.init()
+    try:
+        screen = pygame.display.set_mode((S.WIDTH, S.HEIGHT))
+        pygame.display.set_caption("Corre que Derrete! — Protótipo")
+        renderer = Renderer(screen)
+        app = App()
+        clock = pygame.time.Clock()
+        frames = 0
+        while app.running:
+            frame_time = clock.tick(S.TARGET_FPS) / 1000.0
+            # Transições descartam o tempo anterior (inclusive após pausa).
+            previous_state = app.state
+            for event in pygame.event.get():
+                app.handle_event(event)
+            app.update(0.0 if app.state != previous_state else frame_time)
+            renderer.draw(app)
+            pygame.display.flip()
+            frames += 1
+            if args.smoke_frames is not None and frames >= args.smoke_frames:
+                break
+    finally:
+        pygame.quit()

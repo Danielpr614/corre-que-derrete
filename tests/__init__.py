@@ -1,0 +1,1 @@
+"""Verificações automatizadas do protótipo."""
