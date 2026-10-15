@@ -132,3 +132,13 @@ Daniel Pena informou ser o único integrante a registrar por enquanto, com turma
 - Problemas encontrados e correções:
 - Evidências existentes (commit, captura, vídeo ou arquivo):
 - Pendências e próximo passo:
+
+## 15/10/2026 — Conferência para a entrega e equipe
+
+Daniel reenviou o enunciado e confirmou a equipe com Daniel Pena, John Lucas e Lucas Oliveira. O documento completo, incluindo tabelas, entregáveis, rubrica e regras de IA, foi comparado ao projeto. Os arquivos do ZIP anterior são idênticos aos blobs de `work` em `19c5778`; a revisão não alterou a lógica do jogo.
+
+Foi feita instalação em ambiente virtual novo com Python 3.12.14 e Pygame 2.6.1. Os 59 testes passaram com SDL dummy; `pip check` não encontrou dependências quebradas e a entrada encerrou normalmente após cinco quadros, chamada de fora da pasta do projeto. Não houve teste humano novo no Windows nem medição de FPS.
+
+O README foi reorganizado para apresentar o jogo, instalação, regras e limitações de forma mais direta. Atualizados os registros de equipe, IA, requisitos, evidências e roteiro. As seções históricas continuam descrevendo o que se sabia em suas datas. As contribuições específicas de John e Lucas ainda precisam ser informadas. Os slides feitos em 07/10 estão fora do repositório e precisam ser atualizados com a equipe e incluídos na entrega.
+
+A consulta inicial encontrou o repositório privado e a branch padrão `main` no commit inicial. A versão completa está em `work`. A preparação prevê levar a versão conferida à branch principal sem reescrever commits. Alterar a visibilidade para pública e verificar o link sem login continua sendo uma etapa a concluir no GitHub. Não houve envio formal à faculdade nesta revisão.

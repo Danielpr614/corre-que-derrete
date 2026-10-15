@@ -1,5 +1,16 @@
 # Fontes, créditos e apoio de IA
 
+## Resumo para a entrega de 16 de outubro
+
+Revisão de 15/10/2026. A equipe é Daniel Pena, John Lucas e Lucas Oliveira. O jogo contou com apoio amplo de ChatGPT/Codex, da OpenAI, para concepção, implementação de módulos, desenhos por primitivas, testes automatizados, depuração e documentação. Os slides preparados anteriormente também tiveram apoio da ferramenta.
+
+Nesta revisão, a IA comparou o enunciado completo ao código e aos registros, conferiu os arquivos atuais do GitHub, revisou o README, atualizou a identificação da equipe e organizou requisitos e pendências. Os arquivos alterados são `README.md`, `docs/05-diario.md`, `06-fontes-e-ia.md`, `12-conferencia-do-enunciado.md`, `14-evidencias-e-evolucao.md`, `15-roteiro-apresentacao.md` e `16-equipe-e-entrega.md`. A lógica do jogo não foi modificada nesta etapa.
+
+A verificação incluiu instalação do `requirements.txt` em ambiente virtual novo, 59 testes automatizados com SDL dummy e inicialização de cinco quadros. Os testes não substituem audição, jogabilidade e ensaio humano. Daniel realizou testes no Windows e forneceu os retornos usados nas revisões. As contribuições específicas dos demais integrantes serão acrescentadas quando informadas.
+
+Os registros abaixo preservam o que foi feito em cada etapa. A redação atual foi revisada para ficar mais direta, mantendo as fontes, o alcance da assistência e os limites de validação.
+
+
 Registro iniciado em 07/10/2026. Diferenciar fonte lida, referência indicada e material efetivamente reutilizado.
 
 ## Fontes usadas nesta etapa

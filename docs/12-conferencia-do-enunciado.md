@@ -1,91 +1,139 @@
-# Conferência do enunciado e pendências de entrega
+# Conferência do enunciado e da entrega
 
-Revisão em 07/10/2026 sobre a implementação `23f755e`. Fonte relida: **Projeto Avaliativo — Desenvolvimento de Jogo 2D com Python e Pygame, 30 pontos**, professor Pedro Cândido, DOCX anexado pelo usuário. SHA-256 do arquivo: `d7c83ddf74fc618f8ad39602be742100113848f0ea76a9e3c5b2a48b413e0918`. O documento está disponível nesta conversa; não foi necessário solicitar outra cópia. Não foi incorporado ao repositório.
+Revisão em **15/10/2026**, para a entrega de 16/10/2026. Equipe: **Daniel Pena, John Lucas e Lucas Oliveira**. Professor: Pedro Cândido. Turma: 7º período de Engenharia da Computação.
 
-Esta conferência relaciona exigências acadêmicas ao código e aos registros. Não atribui nota nem comprova domínio na defesa oral. **Os requisitos funcionais estão implementados; a entrega acadêmica completa ainda tem pendências.**
+Foi lido integralmente o documento **Projeto Avaliativo Desenvolvimento de Jogo 2D com Python e Pygame**, incluindo suas tabelas, rubrica e checklist. O arquivo reenviado tem SHA-256 `d7c83ddf74fc618f8ad39602be742100113848f0ea76a9e3c5b2a48b413e0918`, igual ao enunciado conferido em 07/10. A base do código é a branch `work` em `19c5778`, com implementação do último marco funcional `23f755e`.
 
-## Requisitos obrigatórios — seção 4
+**Resultado:** o código apresenta os requisitos funcionais solicitados e passou pelos 59 testes automatizados desta revisão. A entrega ainda depende de apresentação atualizada e incluída no pacote, registro completo das contribuições, acesso ao repositório e ensaio da equipe. Este relatório não atribui nota nem declara concluída uma defesa que ainda não ocorreu.
 
-| Requisito | Implementação e evidência | Situação / limite |
+## Proposta e objetivos das seções 1 a 3
+
+O jogo é uma corrida lateral curta para colegas e jogadores iniciantes. O entregador avança sozinho, salta cones e caixas e coleta gelo para conservar o sorvete até o destino. A barra conecta o tema ao tempo e aos impactos. Uma rota de três trechos limita o escopo sem eliminar início, objetivo, desafio, conclusão e reinício.
+
+Os conceitos de tempo, coordenadas, composição, movimento, animação, colisões e interface aparecem no código e são explicados no [manual técnico](13-organizacao-e-tecnicas.md). Os objetivos de aprendizagem também dependem da compreensão de cada integrante. Ter os recursos implementados não demonstra, por si só, domínio na exposição oral.
+
+## Requisitos obrigatórios da seção 4
+
+| Requisito | Evidência no projeto | Situação |
 | --- | --- | --- |
-| Tecnologia: Python 3 e Pygame | `main.py`, `requirements.txt`: Pygame 2.6.1; biblioteca padrão para os demais módulos. Python 3.12.14 na nuvem; usuário informou Python 3.13.7 no Windows anteriormente. | Implementado. Versão de Pygame instalada no Windows não foi informada. |
-| Ciclo: eventos, atualização, renderização, tempo | `game/app.py:main`, `App.update`; `Clock.tick(60)`, eventos, passo fixo 1/60 s, desenho e apresentação. | Implementado; explicado no relatório 13. 60 FPS é alvo, não medição. |
-| Estados e reinício/saída | `App.handle_event`, `activate`, `start`: menu, instruções, corrida, pausa, resultado de vitória/derrota, áudio; reiniciar, menu e sair. | Implementado. Testes em `tests/test_rules.py` e `test_audio.py`; capturas do protótipo recebidas na conversa. |
-| Interação e feedback | Espaço/seta para cima, menus por teclado, instruções visíveis; flashes, avisos e partículas em `graphics.py` e `particles.py`. | Implementado. Controles do protótipo confirmados no Windows; confirmação atual é de visual e áudio satisfatórios, sem checklist individual. |
-| Objetivo, regras, desafio e conclusão | `Run.update`: conservação, cones/caixas, gelo, derretimento e resultado; README e instruções. | Implementado. Vitória e derrota do protótipo documentadas pelo usuário; balanceamento humano não foi medido. |
-| Colisões e resposta explicável | `Player.rect`, `WorldObject.rect`, `Run.update`: AABB com `colliderect`, consumo único, proteção e chão. | Implementado e testado; método e limites no relatório 13. |
-| Pelo menos três técnicas gráficas | `Parallax`, `CourierAnimation`, `Effects`: camadas com velocidades diferentes, quadros e partículas. | As três estão implementadas; exigem explicação/demonstração pelo estudante. Há também câmera, transformações e composição. |
-| HUD/painel | `Renderer.hud`: conservação, distância, trecho, pontuação, gelos, impactos e avisos. | Implementado; conservação com uma casa decimal e vírgula no HUD/resultado. |
-| Progressão | `Run.stage/speed`, `build_route`: três trechos, velocidade 260/300/340 e intervalos 1200/950/650 nas sequências de obstáculos. | Implementado; não são três mapas independentes. |
-| Desempenho estável no computador de demonstração | Cache de quadros/cenário e limite de 100 partículas; testes SDL dummy; relato atual de visual/áudio satisfatórios no Windows. | Evidência parcial: sem FPS medido, duração de teste ou identificação do computador da avaliação. Fazer ensaio nesse computador, especialmente F11/redimensionamento. |
-| Organização coerente | Módulos por responsabilidade em `game/`, testes separados, constantes em `settings.py`. | Implementado; documentação no relatório 13. Não se exige orientação a objetos. |
-| Reprodução com README e dependências | Comandos Windows/VS Code, ambiente, controles e estrutura no README; instalação limpa na nuvem registrada no relatório 07. | Documentado e executável com Python. Última versão foi testada no Windows segundo o usuário; procedimento de instalação limpa dessa versão no computador da avaliação não foi relatado. |
+| Python 3 e Pygame | `main.py` e `requirements.txt`, com `pygame==2.6.1` | Conferido; biblioteca padrão nos demais módulos |
+| Loop e controle de tempo | `game/app.py:main`, `App.update`, `Clock.tick`, passo fixo de 1/60 s | Implementado e testado |
+| Menu, partida, pausa/instruções, resultado, reinício e saída | `App.handle_event`, `activate`, `start` e estados do renderizador | Implementados; testes de regras, interface e áudio |
+| Interação e feedback | Teclado, instruções, avisos, partículas, piscar e barra | Implementados; relato de uso no Windows por Daniel |
+| Objetivo, desafio e resultado | `Run.update`: conservação, gelo, obstáculos e chegada | Implementados; testes incluem vitória, derrota e rota completável |
+| Colisões explicáveis | `Player.rect`, `WorldObject.rect` e `colliderect` | AABB por retângulos; não é colisão pela silhueta |
+| Pelo menos três técnicas gráficas | `Parallax`, `CourierAnimation` e `Effects` | Parallax, animação por quadros e partículas implementados |
+| HUD | `Renderer.hud`: conservação, distância, trecho, pontos, gelos e impactos | Implementado; conservação com vírgula e uma casa decimal |
+| Progressão | `Run.stage/speed` e `build_route` | Três trechos com maior velocidade e obstáculos mais próximos |
+| Estabilidade no computador da avaliação | Caches, controle de tempo, limite de partículas e testes simulados | Parcial: precisa de ensaio no equipamento escolhido; sem FPS real medido |
+| Código organizado | Módulos em `game/`, constantes e testes separados | Conferido; orientação a objetos não é obrigação do enunciado |
+| Reprodução documentada | README com versões, comandos, controles e estrutura | Instalação limpa refeita nesta revisão; ensaio humano final ainda necessário |
 
-## Proposta, aprendizagem, autoria e referências — seções 1–3, 5 e 11
+Os três trechos pertencem à mesma rota, não são três mapas. O áudio melhora a experiência, mas não é contado como uma das três técnicas de Computação Gráfica.
 
-O projeto tem início, objetivo, desafio, encerramento e reinício; o tema veio do usuário, e a implementação foi elaborada com apoio amplo de ChatGPT/Codex. É uma corrida lateral com conservação do sorvete, gelo e progressão, não uma base de jogo existente renomeada. Coordenadas, tempo, composição e interação estão explicados no relatório 13. A capacidade de explicá-los é responsabilidade de quem apresentar.
+## Referências e autoria das seções 5 e 11
 
-Não foi reutilizado código dos três repositórios de jogos indicados pelo professor. Seus links foram registrados como referências para estudo, sem afirmar leitura dos conteúdos. Se houver estudo posterior, registrar concretamente o que foi aprendido. O enunciado não obriga copiar ou usar uma dessas bases. As exigências de transformação de uma base existente na seção 5 são condicionais e não se aplicam como obrigação de adaptação fictícia.
+A seção 5 condiciona as exigências de transformação ao uso de uma base existente. O projeto não adaptou o código dos três jogos indicados pelo professor. Portanto, não há uma base a ser apresentada como transformada. Os links continuam registrados como referências indicadas, sem afirmar estudo que não foi relatado.
 
-Arte: primitivas próprias da implementação assistida, sem imagens externas. Fonte padrão e biblioteca Pygame creditadas. Música: HorrorPen, **House In a Forest Loop**, **CC BY 3.0**, Ogg incluído, origem e atribuição em [créditos musicais](../assets/audio/CREDITOS.md). A cópia Godot foi usada apenas para obter a faixa e verificar sua declaração de licença; nenhum código do demo foi adaptado. Fontes e IA: [registro completo](06-fontes-e-ia.md). Não existe uma licença geral escolhida para o código do projeto; isso não altera a licença da música.
+A arte é construída por primitivas do Pygame no próprio código, com assistência de IA. A música externa é **House In a Forest Loop**, de **HorrorPen**, sob **CC BY 3.0**. O arquivo, o autor, a fonte e a licença estão em [créditos musicais](../assets/audio/CREDITOS.md). Python, Pygame, a fonte distribuída com o pacote e ChatGPT/Codex também constam dos créditos. A licença da música não se confunde com a do código do projeto, para o qual não foi escolhida uma licença geral.
 
-Não apresentar o código como escrito exclusivamente pelo estudante. O uso de IA está declarado com finalidade, partes afetadas e verificação. Identificação informada nesta revisão: Daniel Pena, único integrante por enquanto; 7º período de Engenharia da Computação; entrega em 16 de outubro (ano de referência: 2026); apresentação ainda sem data definida pelo professor. Contribuições conhecidas estão no índice 14. Os campos do anexo estavam em branco; esses dados vieram do usuário. A defesa e a observância das regras da disciplina não podem ser substituídas pelos testes automatizados.
+O [registro de fontes e IA](06-fontes-e-ia.md) informa ferramenta, finalidade, partes afetadas e validação por etapa. Houve apoio amplo de ChatGPT/Codex à implementação, aos desenhos por código, aos testes e à documentação. A revisão de redação mantém essa declaração. Daniel forneceu decisões e testes no Windows; as atividades específicas de John e Lucas precisam ser informadas. Não se atribui programação ou validação a uma pessoa apenas por ela integrar a equipe.
 
-## Etapas e entregáveis — seções 6 e 7
+O enunciado permite apoio de IA conforme as regras da disciplina e responsabiliza cada integrante por compreender o conteúdo. A autorização verbal relatada por Daniel não substitui os créditos e a explicação do código. A seção também trata de cópia não declarada e de omissão de fontes. A entrega não deve apresentar implementação assistida como programação humana exclusiva.
 
-| Item | Evidência atual | Pendência |
+## Etapas da seção 6
+
+| Etapa | Registro existente | Situação atual |
 | --- | --- | --- |
-| Concepção | Commit `bf1db57`; docs 01–04: tema, gênero, público, regras, esboços textuais, fluxo e tarefas propostas. | Daniel identificado e contribuições conhecidas registradas; acrescentar outros integrantes somente quando informados. |
-| Protótipo jogável | `2ef4366`; relatório 07 e diário: movimento, salto, colisões, recursos provisórios e 27 testes. | Nenhuma funcionalidade desse marco pendente. |
-| Versão intermediária | `52fb13f`, `9c21d5f`, `26d723c`, `23f755e`; UI, técnicas, renderização e áudio. | Consolidar capturas reais para os slides. |
-| Versão final | Código atual, README, créditos, matriz, manual técnico, evidências e roteiro. | Apresentação PPTX/PDF, ensaio e pacote de entrega. Este registro documental não declara encerrada a etapa 4. |
-| Código-fonte completo | Arquivos rastreados pelo Git, módulos, dependência e Ogg. `work/`, `.venv/`, `.local/` e caches ignorados. | Gerar/conferir pacote final sem arquivos temporários; não incluir preferências pessoais. |
-| README | Instalação, execução, regras, controles, estrutura, créditos e limitações revisados. | Conferir o comando no computador da avaliação. |
-| Dependências | `pygame==2.6.1`; instalação limpa e `pip check` registrados no marco 2. | Registrar eventual instalação nova no computador de demonstração quando ocorrer. |
-| Apresentação PPTX ou PDF | [Roteiro de 13 minutos](15-roteiro-apresentacao.md) com demonstração e conteúdo técnico. | O roteiro Markdown não substitui o arquivo PPTX/PDF exigido. Montar/exportar slides com capturas e identificação. |
-| Créditos | README, docs 06, arquivo de créditos junto da música. | Daniel e contribuições conhecidas registrados; preservar atribuição ao redistribuir. |
-| Evolução/divisão de tarefas | [Índice de evidências](14-evidencias-e-evolucao.md), commits e diário. | Capturas da conversa não estão arquivadas no Git; registrar mudanças futuras na equipe. |
-| Demonstração | `python main.py` executável com Python/Pygame; relatos de execução no Windows. | Ensaio na máquina da avaliação e cópia de segurança; vídeo curto recomendado. Não há `.exe` autônomo. Se o professor exigir especificamente esse formato, esclarecer/empacotar; o enunciado não especifica formato binário. |
+| Concepção | `bf1db57`, documentos 01 a 04: tema, público, regras, esboços e fluxo | Marco preservado; tarefas iniciais eram propostas, não uma divisão já executada |
+| Protótipo | `2ef4366`, diário e relatório 07 | Movimento, interação, colisões e formas provisórias registrados |
+| Intermediária | `52fb13f`, `9c21d5f`, `26d723c` e `23f755e` | Interface, técnicas, nitidez, correções e música registrados |
+| Final | Código atual e revisão documental de 15/10 | Falta concluir slides, contribuições, ensaio e pacote |
 
-## Conteúdo da apresentação e rubrica — seções 8–10
+Os marcos de implementação listados são de 07/10/2026. Não representam dias diferentes de trabalho. O histórico e o diário são evidências da evolução; os registros antigos foram mantidos com o contexto da época.
 
-O roteiro 15 cobre identificação, conceito, fontes, regras/estados, arquitetura, técnicas, movimento/colisão/câmera/HUD/progressão, evolução, dificuldades, testes, demonstração, créditos e IA. Inclui instruções para inserir contribuições reais e para todos os integrantes participarem. Perguntas e domínio técnico ainda dependem de preparação humana.
+## Entregáveis da seção 7
 
-| Critério / pontos | Onde está a evidência | O que ainda depende da entrega/defesa |
+| Entregável | O que existe | Pendência para o envio |
 | --- | --- | --- |
-| Concepção e planejamento — 2 | Docs 01–04, marco 1 | Apresentar conceito e esboços; declarar referências realmente estudadas. |
-| Funcionamento e mecânicas — 5 | Código, testes de regras, relatos Windows | Demonstração, justificativa das regras e equilíbrio. |
-| Computação Gráfica — 6 | Módulos e relatório 13 | Explicação fundamentada das três técnicas. |
-| Design e experiência — 3 | Interface, arte, feedback; confirmação atual do usuário | Mostrar legibilidade e consistência durante a demonstração. |
-| Qualidade do código — 4 | Organização, constantes, caminhos e caches | Explicar responsabilidades e escolhas. |
-| Estabilidade e testes — 2 | Relatórios 07–11 e testes existentes | Instalação/ensaio no computador de avaliação e evidência de estabilidade. |
-| Documentação da construção — 3 | Diário, índice e roteiro | Slides PPTX/PDF, capturas e contribuições. |
-| Apresentação e defesa — 4 | Roteiro proposto | Ensaio, participação, demonstração e respostas; ainda não realizados. |
-| Originalidade e fontes — 1 | Registro de fontes/IA e créditos musicais | Transparência e compreensão do código durante a defesa. |
+| Código-fonte | `main.py`, `game/`, `assets/` e `tests/` completos | Conferir que o link e o ZIP abrem a versão correta |
+| README | Objetivo, instalação, execução, regras, controles, estrutura, créditos e limites | Conferir acesso público e execução no computador da avaliação |
+| Dependências | `requirements.txt`, com Pygame 2.6.1 | Instalação limpa concluída em 15/10 |
+| PPTX ou PDF | Arquivos preparados em 07/10 fora do repositório | Atualizar os três integrantes e contribuições; incluir na entrega |
+| Créditos | README, documento 06 e créditos junto da faixa | Manter atribuições no pacote final |
+| Evolução e tarefas | Commits, diário e documento 14 | Completar as contribuições individuais e incorporar capturas selecionadas |
+| Demonstração | Jogo executável com Python, relatos Windows e testes | Ensaiar no equipamento da avaliação e preparar cópia offline; vídeo curto recomendado |
 
-Não estimar uma nota de 30 pontos: os níveis da seção 10 dependem das evidências e da avaliação do professor.
+O texto não exige um `.exe` autônomo. O comando `python main.py`, com as dependências instaladas, executa o jogo. O vídeo é recomendado como segurança; não substitui a demonstração em execução nem é descrito como obrigação absoluta.
 
-## Checklist e condições — seções 12 e 13
+## Estrutura mínima da apresentação da seção 8
 
-| Verificação do professor | Registro atual |
+A próxima revisão dos slides deve verificar os onze itens abaixo:
+
+1. Nome do jogo, três integrantes, gênero, público e objetivo.
+2. Problema de projeto, conceito inicial e esboço ou fluxo.
+3. Fontes realmente utilizadas e o que foi estudado ou reutilizado. Distinguir referências indicadas de conteúdos consultados.
+4. Regras, controles, ciclo da partida e diagrama dos estados.
+5. Principais módulos e suas responsabilidades.
+6. Implementação de pelo menos três técnicas gráficas, com exemplos visuais.
+7. Movimento, animação, colisão, câmera, camadas, HUD e progressão.
+8. Capturas de versões intermediárias comparadas ao resultado atual.
+9. Problemas reais, testes e soluções adotadas.
+10. Demonstração ao vivo e análise breve do resultado.
+11. Contribuições reais, créditos e declaração de IA.
+
+O professor recomenda **10 a 15 minutos de exposição, seguidos de perguntas e demonstração**. Se aceitar a demonstração dentro do tempo, adaptar a distribuição sem suprimir as explicações. Todos os integrantes devem participar e saber explicar o código. O roteiro em Markdown e os slides antigos não devem ser tratados como entrega final atualizada.
+
+## Rubrica das seções 9 e 10
+
+| Critério | Pontos | Evidência e atenção na avaliação |
+| --- | --- | --- |
+| Concepção e planejamento | 2 | Conceito, regras, esboço, fontes e marcos dos documentos 01 a 04 |
+| Funcionamento e mecânicas | 5 | Loop, estados, salto, coleta, impacto, resultado, reinício e progressão demonstráveis |
+| Computação Gráfica | 6 | Parallax, quadros e partículas, com explicação de como funcionam |
+| Design e experiência | 3 | Legibilidade, HUD, feedback, consistência e acabamento |
+| Qualidade do código | 4 | Responsabilidades dos módulos, constantes, caminhos e organização explicáveis |
+| Estabilidade e testes | 2 | Instalação reproduzível, testes e ensaio no computador da avaliação |
+| Documentação da construção | 3 | Slides, capturas, decisões, dificuldades, evolução e contribuições |
+| Apresentação e defesa | 4 | Participação dos três integrantes, demonstração e respostas consistentes |
+| Originalidade e fontes | 1 | Identidade e mecânica próprias, créditos e transparência sobre IA |
+| **Total** | **30** | A soma define a rubrica, não uma nota já obtida |
+
+A seção 10 classifica cada critério como excelente (90 a 100%), adequado (70 a 89%), parcial (40 a 69%) ou insuficiente (0 a 39%). A implementação não garante a faixa: evidência, explicação e avaliação do professor também contam. Computação Gráfica vale 6 pontos e defesa vale 4, por isso jogar durante toda a exposição não atende à finalidade da apresentação técnica.
+
+## Verificações executadas em 15 de outubro
+
+- Conferidos os hashes de todos os arquivos do ZIP anterior contra a árvore atual de `work`: nenhuma divergência.
+- Criado ambiente virtual novo com Python **3.12.14** e instalado `requirements.txt`, com Pygame **2.6.1**.
+- `python -m unittest discover -s tests -q`: **59 testes passaram**. As suítes cobrem regras, estados, interface, técnicas gráficas, resolução e áudio com SDL dummy.
+- `python -m pip check`: nenhuma dependência quebrada.
+- `main.py --smoke-frames 5`, com drivers dummy e chamado a partir de outra pasta: encerrou sem erro. Isso confere inicialização e resolução de caminhos.
+- Conferidos caminhos do código, recursos, árvore de arquivos e créditos. Não foram encontrados segredos, caminhos pessoais ou dependências extras no código revisado.
+
+Não houve nova partida humana, audição ou medição de FPS nesta revisão. A confirmação anterior de Daniel sobre visual e áudio no Windows continua válida para aquele teste. Os resultados automáticos não provam desempenho no notebook do professor.
+
+## Checklist e condições das seções 12 e 13
+
+| Verificação | Situação |
 | --- | --- |
-| Abre pelo comando do README | Entrada testada na nuvem; execução Windows relatada. Ensaio na máquina da avaliação pendente. |
-| Objetivo/regras/controles visíveis | Jogo e README. |
-| Iniciar, jogar, concluir/perder e reiniciar sem editar | Implementado e testado; vitória/derrota do protótipo relatadas. |
-| Colisões/limites testados | Testes de regras, interface/resolução; não equivalem a checklist interativo atual no Windows. |
-| Caminhos portáveis e recursos no pacote | Caminhos derivados do módulo; Ogg rastreado; execução a partir de outra pasta registrada. |
-| Dependência em ambiente limpo | Evidência no relatório 07, sem alegar instalação nova nesta revisão. |
-| Sem senhas/caminhos pessoais/temporários/dependências ocultas | Arquivos rastreados conferidos nesta revisão; apenas Pygame externo. Pacote final deve excluir diretórios ignorados. |
-| Apresentação com intermediárias e técnicas | Roteiro e índice prontos; PPTX/PDF e capturas arquivadas pendentes. |
-| Contribuições e IA declaradas | IA e contribuições conhecidas de Daniel Pena registradas; nenhuma divisão fictícia de módulos. |
-| Recursos/códigos externos creditados | Pygame/Python/fonte, faixa e IA; nenhum código de jogo externo adaptado. |
-| Cópia de segurança e vídeo | Ainda não preparados como entregáveis; vídeo recomendado, não obrigação absoluta. |
+| Abre com o comando do README | Inicialização automatizada confirmada; Windows relatado anteriormente |
+| Objetivo, controles e regras visíveis | Presentes no jogo e no README |
+| Iniciar, concluir/perder e reiniciar sem editar | Implementado e coberto por testes |
+| Colisões e limites testados | Suítes de regras e interface/resolução |
+| Caminhos portáveis e recursos no pacote | Caminhos baseados no módulo, Ogg incluído e entrada testada fora da pasta |
+| Dependências em ambiente limpo | Refeito nesta revisão |
+| Ausência de segredos e temporários no pacote | Código conferido; excluir ambientes virtuais, caches e preferências ao empacotar |
+| Apresentação com evolução e técnicas | Arquivos anteriores existem fora do Git; atualização e inclusão pendentes |
+| Contribuições e IA declaradas | IA e Daniel registrados; completar as atividades de John e Lucas |
+| Fontes creditadas | Créditos presentes; manter na redistribuição |
+| Segurança | Preparar cópia offline e, preferencialmente, vídeo curto da versão final |
 
-Para a avaliação, preparar uma cópia offline e, preferencialmente, vídeo. Recurso futuro não recebe evidência de implementação; a nota pode ser individualizada em equipe. Se houver correção após a entrega formal, a seção 12 exige autorização do professor e registro da mudança. Não há notícia de entrega formal realizada nesta conversa.
+A seção 12 prevê versão de segurança se o jogo não abrir, avaliação apenas dos recursos demonstráveis, possível diferenciação da nota individual e necessidade de autorização para correções após a entrega. O grupo ainda precisa ensaiar e confirmar o funcionamento na máquina da avaliação.
 
-## Ordem sugerida para finalizar
+## Referências e acesso da seção 14
 
-1. Revisar entendimento do código e confirmar a data da apresentação quando definida; atualizar contribuições caso a equipe mude.
-2. Montar PPTX/PDF a partir do roteiro, incluindo capturas reais e comparação das etapas.
-3. Ensaiar no computador da avaliação, registrar ambiente e estabilidade; preparar demonstração e respostas.
-4. Conferir pacote final com código, dependência, Ogg e créditos; guardar cópia offline e gravar vídeo curto de segurança.
+As referências listadas pelo professor estão preservadas no documento 06. Não é obrigatório adaptar um dos jogos indicados e não houve reutilização do código deles. As fontes efetivas e os recursos utilizados estão separados dessas indicações.
+
+Na consulta inicial de 15/10, o repositório estava **privado**, com `main` em `aaab7cc` e o jogo completo em `work`. Nesta revisão, a versão documental conferida será enviada a `work` e encaminhada à branch principal preservando o histórico. A visibilidade pública, solicitada por orientação adicional relatada por Daniel, precisa ser alterada nas configurações do GitHub e conferida sem login. Não há comando de alteração de visibilidade disponível na conexão usada nesta revisão.
+
+A ordem de fechamento é: completar contribuições, revisar e incluir os slides e capturas, testar o link público da versão correta, ensaiar e guardar a cópia de segurança. Os campos pendentes só devem ser marcados como concluídos depois de executados.

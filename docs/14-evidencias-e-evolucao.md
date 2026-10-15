@@ -1,5 +1,14 @@
 # Índice de evidências e evolução
 
+## Atualização em 15 de outubro
+
+Equipe confirmada: Daniel Pena, John Lucas e Lucas Oliveira. As referências abaixo a Daniel como único integrante informado descrevem a situação de 07/10. O registro atual de contribuições está em [equipe e entrega](16-equipe-e-entrega.md).
+
+A conferência desta data confirmou que todos os arquivos do ZIP fornecido em 07/10 têm os mesmos hashes de blob da branch `work` em `19c5778`. Os commits mantêm concepção, protótipo e revisões. Não houve nova etapa de jogabilidade entre as duas conferências. A atualização atual trata da documentação e da preparação da entrega.
+
+Há PPTX, PDF e guia de ensaio preparados em 07/10 nesta conversa, ainda fora do repositório. Eles precisam ser revisados com os três nomes e incluídos na entrega. As capturas históricas são evidências do estágio em que foram feitas; as imagens produzidas por execução preparada do renderizador devem continuar identificadas dessa forma. O vídeo anterior não deve ser chamado de gravação da versão final atualizada.
+
+
 Consolidado em 07/10/2026. Base: histórico Git, diário, relatórios e mensagens/capturas fornecidas pelo usuário. Os documentos históricos permanecem com o contexto da época; pendências antigas podem ter sido resolvidas depois. Este índice não cria retrospectivamente testes ou contribuições.
 
 ## Marcos preservados

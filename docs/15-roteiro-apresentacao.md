@@ -1,5 +1,12 @@
 # Roteiro de apresentação — Corre que Derrete!
 
+## Equipe atualizada e duração
+
+Em 15/10, Daniel confirmou três integrantes: **Daniel Pena, John Lucas e Lucas Oliveira**. Esta identificação substitui a lista individual de 07/10 preservada abaixo. A divisão atual das atividades fica no [registro da equipe](16-equipe-e-entrega.md). Cada integrante deve falar e conseguir explicar o código central.
+
+Para seguir o formato sugerido na seção 8, planejar 10 a 15 minutos de exposição antes das perguntas e da demonstração. Se o professor aceitar a demonstração integrada, usar a distribuição abaixo com esse ajuste de formato. Os slides anteriores já existem como arquivos fora do repositório, mas ainda precisam da equipe atualizada e inclusão no pacote. A revisão desses arquivos será feita na etapa de apresentação.
+
+
 Proposta de **13 minutos**, com demonstração dentro desse tempo. O enunciado recomenda 10–15 minutos de exposição, seguida de perguntas e demonstração; confirmar o formato com o professor. Se ele preferir a demonstração depois, usar os minutos 9:15–11:45 para aprofundar o código e fazer a demonstração ao final. Este arquivo é um roteiro, não o PPTX/PDF exigido.
 
 Identificação para os slides: Daniel Pena, único integrante informado; 7º período de Engenharia da Computação; professor Pedro Cândido; entrega em 16 de outubro (ano de referência: 2026); apresentação com data a definir pelo professor. Contribuições conhecidas no índice 14. Não inserir uma divisão fictícia. Havendo equipe, distribuir blocos entre os integrantes e garantir que todos saibam explicar o código central. Ensaiar com cronômetro; o roteiro ainda não foi ensaiado.
