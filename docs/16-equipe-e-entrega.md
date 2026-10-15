@@ -12,7 +12,7 @@ ChatGPT/Codex, da OpenAI, teve participação ampla na elaboração do código, 
 
 ## Preparação da apresentação
 
-Os três integrantes precisam participar. Uma divisão possível para o ensaio é: Daniel apresenta conceito e evolução; John explica as técnicas gráficas; Lucas demonstra o jogo e explica regras, estados e colisões. Essa é uma proposta de exposição, não um registro de quem implementou cada parte. Pode ser alterada pela equipe. Todos devem conhecer loop, colisão, câmera e as três técnicas gráficas.
+Os três integrantes precisam participar. Uma divisão possível para o ensaio é: Daniel apresenta conceito e evolução; John explica funcionamento, estados e colisões; Lucas apresenta as três técnicas gráficas e demonstra o jogo. Essa é uma proposta de exposição, não um registro de quem implementou cada parte. Pode ser alterada pela equipe. Todos devem conhecer loop, colisão, câmera e as três técnicas gráficas.
 
 A seção 8 recomenda 10 a 15 minutos de exposição, seguidos de perguntas e demonstração. Reservar tempo para explicar as técnicas e o processo, além de jogar. O roteiro e os slides precisam manter esse conteúdo. Um roteiro em Markdown não substitui o PPTX ou PDF exigido.
 
@@ -24,7 +24,7 @@ A seção 8 recomenda 10 a 15 minutos de exposição, seguidos de perguntas e de
 | README e conferência | Revistos nesta etapa |
 | Nomes | Três integrantes registrados |
 | Contribuições individuais | Concepção coletiva dos três integrantes e testes Windows de Daniel registrados |
-| Slides | Nova versão de 15/10 com três integrantes e contribuições, em `presentation/` |
+| Slides | Versão curta de 15/10: 7 slides, com notas de fala e guia de 3 páginas, em `presentation/` |
 | Imagens da evolução | Imagens selecionadas em `presentation/evidencias/`, com origem identificada |
 | Acesso ao professor | Repositório encontrado privado; alterar para público conforme orientação relatada por Daniel |
 | Branch de entrega | `main` e `work` receberam a versão completa na revisão anterior |

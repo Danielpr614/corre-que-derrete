@@ -149,3 +149,8 @@ A consulta inicial encontrou o repositório privado e a branch padrão `main` no
 Daniel esclareceu a participação coletiva de Daniel Pena, John Lucas e Lucas Oliveira nas escolhas de tema, corrida lateral, obstáculos e itens. O registro foi atualizado sem atribuir testes individuais ou programação por módulos que não foram relatados. O README foi reduzido ao manual de uso e aos créditos essenciais; detalhes da verificação permanecem nos relatórios.
 
 A apresentação e as notas de fala foram reescritas para a equipe, com os conceitos exigidos e linguagem mais simples. Imagens históricas e cenas preparadas são identificadas por origem. O apoio de ChatGPT/Codex à implementação e aos materiais continua declarado. A seção 11 do enunciado cita pesquisa, depuração, ideias e revisão conforme as regras da disciplina; a permissão para geração ampla de código deve ser confirmada com o professor. A redação não transforma esse uso em uma autorização já comprovada.
+
+
+### 15/10/2026 - Apresentação reduzida a sete slides
+
+A pedido de Daniel, a apresentação foi reduzida de 14 para 7 slides. A capa perdeu a data de entrega; estados, organização e colisão foram reunidos, e parallax, animação por quadros e partículas passaram a compartilhar um slide com explicações simples. A comparação de evolução e a demonstração foram mantidas. Os slides exclusivos de contribuições e fontes foram retirados; um crédito breve permanece no encerramento, com detalhes no repositório. O guia de fala foi atualizado para três páginas. Os sete slides foram renderizados e revisados visualmente; não houve alteração da lógica do jogo nesta revisão.
