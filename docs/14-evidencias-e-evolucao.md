@@ -1,5 +1,12 @@
 # Índice de evidências e evolução
 
+## Complemento de autoria e apresentação em 15 de outubro
+
+Daniel informou nesta data que a escolha do tema, da corrida lateral, dos obstáculos e dos itens foi coletiva: Daniel Pena, John Lucas e Lucas Oliveira. O registro da equipe passa a incluir essa contribuição dos três, mantendo os testes Windows atribuídos a Daniel e a assistência à implementação atribuída a ChatGPT/Codex. As passagens abaixo sobre contribuições ainda não informadas descrevem o estado anterior a esse relato.
+
+A apresentação foi reescrita com os três integrantes, explicações curtas e um guia de fala. Os arquivos e as imagens selecionadas ficam em `presentation/`. A instalação automatizada e os 59 testes da revisão anterior continuam registrados, sem serem descritos como testes humanos. O ensaio no computador da avaliação e a confirmação do alcance do uso de IA com o professor continuam necessários.
+
+
 ## Atualização em 15 de outubro
 
 Equipe confirmada: Daniel Pena, John Lucas e Lucas Oliveira. As referências abaixo a Daniel como único integrante informado descrevem a situação de 07/10. O registro atual de contribuições está em [equipe e entrega](16-equipe-e-entrega.md).

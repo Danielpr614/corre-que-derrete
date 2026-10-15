@@ -142,3 +142,10 @@ Foi feita instalação em ambiente virtual novo com Python 3.12.14 e Pygame 2.6.
 O README foi reorganizado para apresentar o jogo, instalação, regras e limitações de forma mais direta. Atualizados os registros de equipe, IA, requisitos, evidências e roteiro. As seções históricas continuam descrevendo o que se sabia em suas datas. As contribuições específicas de John e Lucas ainda precisam ser informadas. Os slides feitos em 07/10 estão fora do repositório e precisam ser atualizados com a equipe e incluídos na entrega.
 
 A consulta inicial encontrou o repositório privado e a branch padrão `main` no commit inicial. A versão completa está em `work`. A preparação prevê levar a versão conferida à branch principal sem reescrever commits. Alterar a visibilidade para pública e verificar o link sem login continua sendo uma etapa a concluir no GitHub. Não houve envio formal à faculdade nesta revisão.
+
+
+### 15/10/2026 — Redação, contribuições e apresentação
+
+Daniel esclareceu a participação coletiva de Daniel Pena, John Lucas e Lucas Oliveira nas escolhas de tema, corrida lateral, obstáculos e itens. O registro foi atualizado sem atribuir testes individuais ou programação por módulos que não foram relatados. O README foi reduzido ao manual de uso e aos créditos essenciais; detalhes da verificação permanecem nos relatórios.
+
+A apresentação e as notas de fala foram reescritas para a equipe, com os conceitos exigidos e linguagem mais simples. Imagens históricas e cenas preparadas são identificadas por origem. O apoio de ChatGPT/Codex à implementação e aos materiais continua declarado. A seção 11 do enunciado cita pesquisa, depuração, ideias e revisão conforme as regras da disciplina; a permissão para geração ampla de código deve ser confirmada com o professor. A redação não transforma esse uso em uma autorização já comprovada.

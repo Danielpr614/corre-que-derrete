@@ -4,9 +4,9 @@ Atualização de 15/10/2026 para a entrega de 16/10/2026. Equipe confirmada por 
 
 ## Contribuições
 
-Daniel acompanhou a definição do tema e das revisões, executou o jogo no Windows, enviou capturas e uma gravação, apontou problemas de resolução, legibilidade e desenho do cliente, solicitou música e avaliou as correções. Essas atividades constam da conversa e dos registros do projeto.
+Conforme relato de Daniel em 15/10/2026, **Daniel Pena, John Lucas e Lucas Oliveira** participaram juntos da escolha do tema, do gênero de corrida lateral, dos obstáculos e dos itens do jogo. As decisões coletivas incluem o entregador, o sorvete, os cones, as caixas e o gelo. Essa contribuição de concepção pertence aos três integrantes.
 
-John Lucas e Lucas Oliveira foram incluídos na equipe em 15/10. As atividades específicas de cada um ainda precisam ser informadas pela equipe para completar o registro de contribuições. A inclusão dos nomes não atribui retroativamente programação, testes ou revisões que não foram relatados.
+Daniel executou o jogo no Windows, enviou capturas e uma gravação, relatou problemas de nitidez, legibilidade e desenho do cliente e avaliou as correções e a música. Esses testes têm registros na conversa. Não foram informados testes individuais de John ou Lucas nem uma divisão de programação por módulo.
 
 ChatGPT/Codex, da OpenAI, teve participação ampla na elaboração do código, dos desenhos por primitivas, dos testes, da documentação e dos materiais de apresentação. O [registro de fontes e IA](06-fontes-e-ia.md) identifica as finalidades, os arquivos afetados e as validações. A equipe deve compreender o trabalho e conseguir explicar as decisões centrais.
 
@@ -23,11 +23,11 @@ A seção 8 recomenda 10 a 15 minutos de exposição, seguidos de perguntas e de
 | Código, dependência e música | Presentes na versão conferida de `work` |
 | README e conferência | Revistos nesta etapa |
 | Nomes | Três integrantes registrados |
-| Contribuições individuais | Daniel documentado; faltam os detalhes de John e Lucas |
-| Slides | Arquivos preparados em 07/10 fora do GitHub; atualizar equipe e incluir na entrega |
-| Imagens da evolução | Capturas e vídeo na conversa; selecionar e incluir no pacote/repositório |
+| Contribuições individuais | Concepção coletiva dos três integrantes e testes Windows de Daniel registrados |
+| Slides | Nova versão de 15/10 com três integrantes e contribuições, em `presentation/` |
+| Imagens da evolução | Imagens selecionadas em `presentation/evidencias/`, com origem identificada |
 | Acesso ao professor | Repositório encontrado privado; alterar para público conforme orientação relatada por Daniel |
-| Branch de entrega | `main` estava no início do projeto; precisa receber a versão conferida de `work` |
+| Branch de entrega | `main` e `work` receberam a versão completa na revisão anterior |
 | Ensaio e instalação na avaliação | Ainda sem confirmação nesta revisão |
 | Segurança | Preparar cópia offline; vídeo curto da versão final recomendado |
 
@@ -37,4 +37,4 @@ O link de entrega deve abrir a versão conferida com README, `main.py`, `require
 
 O enunciado anexado exige os entregáveis, mas não determina que o repositório seja público. A necessidade de acesso público foi informada por Daniel como orientação adicional do professor. Antes do envio, abrir o link sem estar conectado ao GitHub para verificar o acesso. A revisão não escolhe uma licença geral para o código: tornar o repositório público não altera a licença dos recursos de terceiros.
 
-Se houver mudança após a entrega formal, a seção 12 exige autorização do professor e registro da correção. A etapa final só deve ser marcada como concluída quando slides, contribuições e pacote estiverem efetivamente completos.
+Se houver mudança após a entrega formal, a seção 12 exige autorização do professor e registro da correção. A etapa final só deve ser marcada como concluída quando os materiais e o ensaio estiverem efetivamente completos.

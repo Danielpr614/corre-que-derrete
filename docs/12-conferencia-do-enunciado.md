@@ -1,10 +1,17 @@
 # Conferência do enunciado e da entrega
 
+## Complemento de autoria e apresentação em 15 de outubro
+
+Daniel informou nesta data que a escolha do tema, da corrida lateral, dos obstáculos e dos itens foi coletiva: Daniel Pena, John Lucas e Lucas Oliveira. O registro da equipe passa a incluir essa contribuição dos três, mantendo os testes Windows atribuídos a Daniel e a assistência à implementação atribuída a ChatGPT/Codex. As passagens abaixo sobre contribuições ainda não informadas descrevem o estado anterior a esse relato.
+
+A apresentação foi reescrita com os três integrantes, explicações curtas e um guia de fala. Os arquivos e as imagens selecionadas ficam em `presentation/`. A instalação automatizada e os 59 testes da revisão anterior continuam registrados, sem serem descritos como testes humanos. O ensaio no computador da avaliação e a confirmação do alcance do uso de IA com o professor continuam necessários.
+
+
 Revisão em **15/10/2026**, para a entrega de 16/10/2026. Equipe: **Daniel Pena, John Lucas e Lucas Oliveira**. Professor: Pedro Cândido. Turma: 7º período de Engenharia da Computação.
 
 Foi lido integralmente o documento **Projeto Avaliativo Desenvolvimento de Jogo 2D com Python e Pygame**, incluindo suas tabelas, rubrica e checklist. O arquivo reenviado tem SHA-256 `d7c83ddf74fc618f8ad39602be742100113848f0ea76a9e3c5b2a48b413e0918`, igual ao enunciado conferido em 07/10. A base do código é a branch `work` em `19c5778`, com implementação do último marco funcional `23f755e`.
 
-**Resultado:** o código apresenta os requisitos funcionais solicitados e passou pelos 59 testes automatizados desta revisão. A entrega ainda depende de apresentação atualizada e incluída no pacote, registro completo das contribuições, acesso ao repositório e ensaio da equipe. Este relatório não atribui nota nem declara concluída uma defesa que ainda não ocorreu.
+**Resultado:** o código apresenta os requisitos funcionais solicitados e passou pelos 59 testes automatizados desta revisão. A apresentação e o registro de contribuições foram atualizados. Restam a conferência do acesso público, o ensaio da equipe e a confirmação com o professor sobre o alcance da geração de código por IA. Este relatório não atribui nota nem declara concluída uma defesa que ainda não ocorreu.
 
 ## Proposta e objetivos das seções 1 a 3
 
@@ -37,7 +44,7 @@ A seção 5 condiciona as exigências de transformação ao uso de uma base exis
 
 A arte é construída por primitivas do Pygame no próprio código, com assistência de IA. A música externa é **House In a Forest Loop**, de **HorrorPen**, sob **CC BY 3.0**. O arquivo, o autor, a fonte e a licença estão em [créditos musicais](../assets/audio/CREDITOS.md). Python, Pygame, a fonte distribuída com o pacote e ChatGPT/Codex também constam dos créditos. A licença da música não se confunde com a do código do projeto, para o qual não foi escolhida uma licença geral.
 
-O [registro de fontes e IA](06-fontes-e-ia.md) informa ferramenta, finalidade, partes afetadas e validação por etapa. Houve apoio amplo de ChatGPT/Codex à implementação, aos desenhos por código, aos testes e à documentação. A revisão de redação mantém essa declaração. Daniel forneceu decisões e testes no Windows; as atividades específicas de John e Lucas precisam ser informadas. Não se atribui programação ou validação a uma pessoa apenas por ela integrar a equipe.
+O [registro de fontes e IA](06-fontes-e-ia.md) informa ferramenta, finalidade, partes afetadas e validação por etapa. Houve apoio amplo de ChatGPT/Codex à implementação, aos desenhos por código, aos testes e à documentação. A revisão de redação mantém essa declaração. Daniel forneceu decisões e testes no Windows; a concepção coletiva dos três integrantes foi informada por Daniel nesta revisão. Não se atribui programação ou validação a uma pessoa apenas por ela integrar a equipe.
 
 O enunciado permite apoio de IA conforme as regras da disciplina e responsabiliza cada integrante por compreender o conteúdo. A autorização verbal relatada por Daniel não substitui os créditos e a explicação do código. A seção também trata de cópia não declarada e de omissão de fontes. A entrega não deve apresentar implementação assistida como programação humana exclusiva.
 
@@ -48,7 +55,7 @@ O enunciado permite apoio de IA conforme as regras da disciplina e responsabiliz
 | Concepção | `bf1db57`, documentos 01 a 04: tema, público, regras, esboços e fluxo | Marco preservado; tarefas iniciais eram propostas, não uma divisão já executada |
 | Protótipo | `2ef4366`, diário e relatório 07 | Movimento, interação, colisões e formas provisórias registrados |
 | Intermediária | `52fb13f`, `9c21d5f`, `26d723c` e `23f755e` | Interface, técnicas, nitidez, correções e música registrados |
-| Final | Código atual e revisão documental de 15/10 | Falta concluir slides, contribuições, ensaio e pacote |
+| Final | Código atual e revisão documental de 15/10 | Slides e contribuições atualizados; ensaio e cópia de segurança pendentes |
 
 Os marcos de implementação listados são de 07/10/2026. Não representam dias diferentes de trabalho. O histórico e o diário são evidências da evolução; os registros antigos foram mantidos com o contexto da época.
 
@@ -59,16 +66,16 @@ Os marcos de implementação listados são de 07/10/2026. Não representam dias 
 | Código-fonte | `main.py`, `game/`, `assets/` e `tests/` completos | Conferir que o link e o ZIP abrem a versão correta |
 | README | Objetivo, instalação, execução, regras, controles, estrutura, créditos e limites | Conferir acesso público e execução no computador da avaliação |
 | Dependências | `requirements.txt`, com Pygame 2.6.1 | Instalação limpa concluída em 15/10 |
-| PPTX ou PDF | Arquivos preparados em 07/10 fora do repositório | Atualizar os três integrantes e contribuições; incluir na entrega |
+| PPTX ou PDF | PPTX e PDF de 15/10 em `presentation/` | Ensaiar as falas e a demonstração |
 | Créditos | README, documento 06 e créditos junto da faixa | Manter atribuições no pacote final |
-| Evolução e tarefas | Commits, diário e documento 14 | Completar as contribuições individuais e incorporar capturas selecionadas |
+| Evolução e tarefas | Commits, diário e documento 14 | Concepção coletiva e testes Windows registrados; capturas selecionadas em `presentation/evidencias/` |
 | Demonstração | Jogo executável com Python, relatos Windows e testes | Ensaiar no equipamento da avaliação e preparar cópia offline; vídeo curto recomendado |
 
 O texto não exige um `.exe` autônomo. O comando `python main.py`, com as dependências instaladas, executa o jogo. O vídeo é recomendado como segurança; não substitui a demonstração em execução nem é descrito como obrigação absoluta.
 
 ## Estrutura mínima da apresentação da seção 8
 
-A próxima revisão dos slides deve verificar os onze itens abaixo:
+A apresentação em `presentation/` cobre os onze itens abaixo:
 
 1. Nome do jogo, três integrantes, gênero, público e objetivo.
 2. Problema de projeto, conceito inicial e esboço ou fluxo.
@@ -82,7 +89,7 @@ A próxima revisão dos slides deve verificar os onze itens abaixo:
 10. Demonstração ao vivo e análise breve do resultado.
 11. Contribuições reais, créditos e declaração de IA.
 
-O professor recomenda **10 a 15 minutos de exposição, seguidos de perguntas e demonstração**. Se aceitar a demonstração dentro do tempo, adaptar a distribuição sem suprimir as explicações. Todos os integrantes devem participar e saber explicar o código. O roteiro em Markdown e os slides antigos não devem ser tratados como entrega final atualizada.
+O professor recomenda **10 a 15 minutos de exposição, seguidos de perguntas e demonstração**. Se aceitar a demonstração dentro do tempo, adaptar a distribuição sem suprimir as explicações. Todos os integrantes devem participar e saber explicar o código. O roteiro em Markdown acompanha o PPTX/PDF de 15/10 e não o substitui.
 
 ## Rubrica das seções 9 e 10
 
@@ -123,8 +130,8 @@ Não houve nova partida humana, audição ou medição de FPS nesta revisão. A 
 | Caminhos portáveis e recursos no pacote | Caminhos baseados no módulo, Ogg incluído e entrada testada fora da pasta |
 | Dependências em ambiente limpo | Refeito nesta revisão |
 | Ausência de segredos e temporários no pacote | Código conferido; excluir ambientes virtuais, caches e preferências ao empacotar |
-| Apresentação com evolução e técnicas | Arquivos anteriores existem fora do Git; atualização e inclusão pendentes |
-| Contribuições e IA declaradas | IA e Daniel registrados; completar as atividades de John e Lucas |
+| Apresentação com evolução e técnicas | Nova versão em `presentation/`, com os três integrantes e imagens de evolução |
+| Contribuições e IA declaradas | IA, decisões coletivas dos três integrantes e testes Windows de Daniel registrados |
 | Fontes creditadas | Créditos presentes; manter na redistribuição |
 | Segurança | Preparar cópia offline e, preferencialmente, vídeo curto da versão final |
 
@@ -136,4 +143,4 @@ As referências listadas pelo professor estão preservadas no documento 06. Não
 
 Na consulta inicial de 15/10, o repositório estava **privado**, com `main` em `aaab7cc` e o jogo completo em `work`. Nesta revisão, a versão documental conferida será enviada a `work` e encaminhada à branch principal preservando o histórico. A visibilidade pública, solicitada por orientação adicional relatada por Daniel, precisa ser alterada nas configurações do GitHub e conferida sem login. Não há comando de alteração de visibilidade disponível na conexão usada nesta revisão.
 
-A ordem de fechamento é: completar contribuições, revisar e incluir os slides e capturas, testar o link público da versão correta, ensaiar e guardar a cópia de segurança. Os campos pendentes só devem ser marcados como concluídos depois de executados.
+Slides, capturas e contribuições foram organizados nesta revisão. A ordem de fechamento é: confirmar o alcance permitido do uso de IA, testar o link público da versão correta, ensaiar e guardar a cópia de segurança. Os campos pendentes só devem ser marcados como concluídos depois de executados.

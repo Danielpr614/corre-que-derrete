@@ -1,5 +1,12 @@
 # Fontes, créditos e apoio de IA
 
+## Complemento de autoria e apresentação em 15 de outubro
+
+Daniel informou nesta data que a escolha do tema, da corrida lateral, dos obstáculos e dos itens foi coletiva: Daniel Pena, John Lucas e Lucas Oliveira. O registro da equipe passa a incluir essa contribuição dos três, mantendo os testes Windows atribuídos a Daniel e a assistência à implementação atribuída a ChatGPT/Codex. As passagens abaixo sobre contribuições ainda não informadas descrevem o estado anterior a esse relato.
+
+A apresentação foi reescrita com os três integrantes, explicações curtas e um guia de fala. Os arquivos e as imagens selecionadas ficam em `presentation/`. A instalação automatizada e os 59 testes da revisão anterior continuam registrados, sem serem descritos como testes humanos. O ensaio no computador da avaliação e a confirmação do alcance do uso de IA com o professor continuam necessários.
+
+
 ## Resumo para a entrega de 16 de outubro
 
 Revisão de 15/10/2026. A equipe é Daniel Pena, John Lucas e Lucas Oliveira. O jogo contou com apoio amplo de ChatGPT/Codex, da OpenAI, para concepção, implementação de módulos, desenhos por primitivas, testes automatizados, depuração e documentação. Os slides preparados anteriormente também tiveram apoio da ferramenta.
